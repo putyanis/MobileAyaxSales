@@ -1,17 +1,1 @@
-<ion-menu [content]="content">
-
-    <ion-header>
-        <ion-toolbar>
-            <ion-title>Pages</ion-title>
-        </ion-toolbar>
-    </ion-header>
-
-    <ion-content>
-        <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
-            123
-        </button>
-    </ion-content>
-
-</ion-menu>
-
-<ion-nav [root]="rootPage" #content></ion-nav>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
