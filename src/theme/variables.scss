@@ -45,14 +45,17 @@ $colors: (
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
-
+$loading-ios-background: none;
+$loading-ios-spinner-color: #fff;
 
 
 
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
-
+$loading-md-background: none;
+$loading-md-spinner-color: rgba(255, 255, 255, 1);
+$loading-md-box-shadow-color: none;
 
 
 
@@ -117,4 +120,9 @@ $font-family-wp-base: "Proxima Nova";
   height: 100%;
   box-sizing: border-box;
   position: relative;
+}
+
+.ayax-loader ion-spinner {
+  width: 60px;
+  height: 60px;
 }

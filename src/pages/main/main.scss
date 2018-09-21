@@ -199,7 +199,7 @@ page-main {
     {
         content: '';
         display: block;
-        background: url("../images/checkbox.png");
+        background: url("../../assets/imgs/checkbox.png");
         width: 16px;
         height: 16px;
         position: absolute;
@@ -210,5 +210,9 @@ page-main {
     .checkbox input:checked + label:after
     {
         background-position: -16px 0;
+    }
+
+    .ayax-loader {
+
     }
 }

@@ -1,32 +1,31 @@
 <ion-content>
-  
-  <div class="auth-container">
-    <img src="../../assets/imgs/logo-white.svg" width="200" height="71" class="ay__logo"/>
 
-    <form class="login__form" novalidate>
-        <div class="input">
-            <input type="text" name="phone" class="input__control" id="loginPhone" required/>
-            <label for="loginPhone" class="input__label">Номер телефона</label>
-        </div>
-        <div class="input input_pass">
-            <input type="password" name="password" class="input__control input__control_pass js-login-pass"
-                   id="loginPass" required/>
-            <label for="loginPass" class="input__label">Пароль</label>
-            <span class="login__eye mdi mdi-eye js-login-eye"></span>
-        </div>
-        <div class="input input_submit">
-            <input type="submit" value="Войти" class="input__submit-control" (click)="login()" />
+    <div class="auth-container">
+        <img src="../../assets/imgs/logo-white.svg" width="200" height="71" class="ay__logo"/>
+
+        <div class="login__form">
+            <div class="input">
+                <input type="text" name="email" class="input__control js-login-email" id="email" autocomplete="off" required/>
+                <label for="email" class="input__label">Email</label>
+            </div>
+            <div class="input input_pass">
+                <input type="password" name="password" class="input__control input__control_pass js-login-pass" id="loginPass" required/>
+                <label for="loginPass" class="input__label">Пароль</label>
+                <span class="login__eye mdi mdi-eye js-login-eye"></span>
+            </div>
+            <div class="input input_submit">
+                <input type="submit" value="Войти" class="input__submit-control js-login-try" />
+            </div>
+
+            <div class="login__actions">
+                <a href="" class="js-show-forget">Забыли пароль?</a>
+                <a href="" class="js-show-register">Зарегистрироваться</a>
+            </div>
         </div>
 
-        <div class="login__actions">
-            <a href="" class="animated">Забыли пароль?</a>
-            <a href="" class="animated">Зарегистрироваться</a>
+        <div class="skip-registration js-skip-auth">
+            Продолжить без регистрации <span class="mdi mdi-arrow-right-thick"></span>
         </div>
-    </form>
-
-    <div class="skip-registration">
-        Продолжить без регистрации <span class="mdi mdi-arrow-right-thick"></span>
     </div>
-  </div>
-  
+
 </ion-content>
