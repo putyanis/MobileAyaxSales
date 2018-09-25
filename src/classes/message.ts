@@ -14,4 +14,16 @@ export class Message {
 
         popup.present();
     }
+
+    public showSuccessMessage(title : string, messages: Array<string>) {
+        let message = messages.join('<br>');
+
+        let popup = this.alertCtrl.create({
+            title: title,
+            subTitle: message,
+            buttons: ['OK']
+        });
+
+        return popup.present();
+    }
 }

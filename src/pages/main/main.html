@@ -3,24 +3,84 @@
     <div class="auth-container">
         <img src="../../assets/imgs/logo-white.svg" width="200" height="71" class="ay__logo"/>
 
-        <div class="login__form">
-            <div class="input">
-                <input type="text" name="email" class="input__control js-login-email" id="email" autocomplete="off" required/>
-                <label for="email" class="input__label">Email</label>
-            </div>
-            <div class="input input_pass">
-                <input type="password" name="password" class="input__control input__control_pass js-login-pass" id="loginPass" required/>
-                <label for="loginPass" class="input__label">Пароль</label>
-                <span class="login__eye mdi mdi-eye js-login-eye"></span>
-            </div>
-            <div class="input input_submit">
-                <input type="submit" value="Войти" class="input__submit-control js-login-try" />
-            </div>
+        <div class="login__form js-login-form">
+            <!-- форма входа -->
+            <form class="js-login-state" novalidate style="display: none;">
+                <div class="input">
+                    <input type="text" name="email" class="input__control js-login-email" id="loginEmail" autocomplete="off" required/>
+                    <label for="loginEmail" class="input__label">Email</label>
+                </div>
+                <div class="input input_pass">
+                    <input type="password" name="password" class="input__control input__control_pass js-login-pass" id="loginPass" required/>
+                    <label for="loginPass" class="input__label">Пароль</label>
+                    <span class="login__eye mdi mdi-eye" data-action="type-password"></span>
+                </div>
+                <div class="input input_submit">
+                    <input type="submit" value="Войти" class="input__submit-control" data-action="try-login" />
+                </div>
 
-            <div class="login__actions">
-                <a href="" class="js-show-forget">Забыли пароль?</a>
-                <a href="" class="js-show-register">Зарегистрироваться</a>
-            </div>
+                <div class="login__actions">
+                    <a href="" data-action="show-restore1">Забыли пароль?</a>
+                    <a href="" data-action="show-register">Зарегистрироваться</a>
+                </div>
+            </form>
+
+            <!-- форма регистрации -->
+            <form class="js-register-state" novalidate style="display: none;">
+                <div class="input">
+                    <input type="text" name="email" class="input__control" id="registrationEmail" autocomplete="off" required/>
+                    <label for="registrationEmail" class="input__label">Email</label>
+                </div>
+                <div class="input input_pass">
+                    <input type="password" name="password" class="input__control input__control_pass js-login-pass"
+                           id="registrationPassword" required/>
+                    <label for="registrationPassword" class="input__label">Пароль</label>
+                    <span class="login__eye mdi mdi-eye" data-action="type-password"></span>
+                </div>
+                <div class="input input_submit">
+                    <input type="submit" value="Зарегистрироваться" class="input__submit-control" data-action="try-register"/>
+                </div>
+                <div class="login__actions">
+                    <a href="" data-action="show-login">У меня есть аккаунт</a>
+                </div>
+            </form>
+
+            <!-- форма восстановления 1 -->
+            <form class="js-restore1-state" novalidate style="display: none;">
+                <div class="input">
+                    <input type="text" name="email" class="input__control" id="restoreEmail" autocomplete="off" required/>
+                    <label for="restoreEmail" class="input__label">Email</label>
+                </div>
+                <div class="input input_submit">
+                    <input type="submit" value="Прислать код" class="input__submit-control" data-action="try-restore1"/>
+                    <a href="" class="white-link input__submit-link" data-action="try-restore1">Отправить еще раз</a>
+                </div>
+
+                <div class="login__actions login__actions_forget">
+                    <a href="" class="white-link" data-action="show-register">Зарегистрироваться</a>
+                </div>
+            </form>
+
+            <!-- форма восстановления 2 -->
+            <form class="js-restore2-state" novalidate style="display: none;">
+                <input type="hidden" name="email">
+                <div class="input">
+                    <input type="text" name="code" class="input__control" id="restoreCode" autocomplete="off" required/>
+                    <label for="restoreCode" class="input__label">Код из письма</label>
+                </div>
+                <div class="input input_pass">
+                    <input type="password" name="password" class="input__control input__control_pass js-login-pass" id="restorePassword" required/>
+                    <label for="restorePassword" class="input__label">Новый пароль</label>
+                    <span class="login__eye mdi mdi-eye js-login-eye" data-action="type-password"></span>
+                </div>
+                <div class="input input_submit">
+                    <input type="submit" value="Обновить пароль" class="input__submit-control" data-action="try-restore2"/>
+                </div>
+
+                <div class="login__actions login__actions_forget">
+                    <a href="" class="white-link js-show-login" data-action="show-login">Я помню пароль</a>
+                </div>
+            </form>
         </div>
 
         <div class="skip-registration js-skip-auth">
