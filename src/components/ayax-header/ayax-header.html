@@ -1,0 +1,38 @@
+<ion-content>
+    <ion-menu [content]="ayaxHeader">
+        <div class="a-menu">
+            <div class="side-agent">
+                <span class="side-agent__shadow"></span>
+                <div class="side-agent__img">
+                    <img src="{{avatar}}" class="side-agent__image"/>
+                </div>
+                <div class="side-agent__name">{{displayName}}</div>
+            </div>
+            <div class="aside-list">
+                <a href="" class="aside-list__item">
+                    <span class="mdi mdi-star-outline aside-list__icon"></span>Избранное
+                    <span class="aside-list__unread">{{favoriteCount}}</span>
+                </a>
+                <a href="" class="aside-list__item">
+                    <span class="mdi mdi-compare aside-list__icon"></span>Сравнение
+                    <span class="aside-list__unread">{{compareCount}}</span>
+                </a>
+                <a href="" class="aside-list__item"><span class="mdi mdi-settings aside-list__icon"></span>Настройки</a>
+            </div>
+        </div>
+    </ion-menu>
+    <ion-content #ayaxHeader>
+        <div class="header js-header">
+            <div class="burger js-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <img src="../../assets/imgs/logo-white.svg" class="main-logo" width="66" height="21">
+            <div class="sub-icons">
+                <span class="mdi mdi-star-outline favorites"></span>
+                <span class="mdi mdi-compare comparison"></span>
+            </div>
+        </div>
+    </ion-content>
+</ion-content>

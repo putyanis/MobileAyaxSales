@@ -9,12 +9,15 @@ import {MyApp} from './app.component';
 import {MainPage} from '../pages/main/main';
 import {SearchPage} from "../pages/search/search";
 
+import {AyaxHeaderComponent} from "../components/ayax-header/ayax-header";
+
 
 @NgModule({
     declarations: [
         MyApp,
         MainPage,
-        SearchPage
+        SearchPage,
+        AyaxHeaderComponent
     ],
     imports: [
         BrowserModule,
