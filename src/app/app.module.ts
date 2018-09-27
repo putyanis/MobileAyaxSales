@@ -9,6 +9,7 @@ import {MyApp} from './app.component';
 import {MainPage} from '../pages/main/main';
 import {SearchPage} from "../pages/search/search";
 import {ServicesPage} from "../pages/services/services";
+import {AgentPage} from "../pages/agent/agent";
 
 import {AyaxHeaderComponent} from "../components/ayax-header/ayax-header";
 
@@ -18,8 +19,9 @@ import {AyaxHeaderComponent} from "../components/ayax-header/ayax-header";
         MyApp,
         MainPage,
         SearchPage,
-        ServicesPage,
-        AyaxHeaderComponent
+        AyaxHeaderComponent,
+        AgentPage,
+        ServicesPage
     ],
     imports: [
         BrowserModule,
@@ -31,7 +33,9 @@ import {AyaxHeaderComponent} from "../components/ayax-header/ayax-header";
         MyApp,
         MainPage,
         SearchPage,
-        ServicesPage
+        AgentPage,
+        ServicesPage,
+        AyaxHeaderComponent,
     ],
     providers: [
         StatusBar,

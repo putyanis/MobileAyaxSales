@@ -40,6 +40,7 @@ $colors: (
 // iOS only Sass variables can go here
 $loading-ios-background: none;
 $loading-ios-spinner-color: #fff;
+$toolbar-ios-height: 50px;
 
 // App Material Design Variables
 // --------------------------------------------------
@@ -47,6 +48,7 @@ $loading-ios-spinner-color: #fff;
 $loading-md-background: none;
 $loading-md-spinner-color: rgba(255, 255, 255, 1);
 $loading-md-box-shadow-color: none;
+$toolbar-md-height: 50px;
 
 // App Windows Variables
 // --------------------------------------------------
@@ -113,8 +115,22 @@ $font-family-wp-base: "Proxima Nova";
 
 .inner-page {
     margin-top: 50px;
+    padding-top: 24px;
     position: relative;
     z-index: 80;
     border-bottom: 6px solid #c32b2b;
     padding-bottom: 16px;
+    background: #f6f9f9;
+    min-height: calc(100% - 50px);
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.title_smaller {
+    font-size: 20px;
 }

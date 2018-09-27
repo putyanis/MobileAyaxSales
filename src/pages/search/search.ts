@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {IonicPage, MenuController, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {AyaxRest} from "../../classes/ayaxrest";
 import {ServicesPage} from "../services/services";
+import {AgentPage} from "../agent/agent";
 
 @IonicPage()
 @Component({
@@ -34,7 +35,7 @@ export class SearchPage {
 
         let serviceButtons = document.querySelectorAll(".js-service");
         if (serviceButtons) {
-            serviceButtons.forEach((btn) => {
+            [].forEach.call(serviceButtons, (btn) => {
                 btn.addEventListener("click", (event) => {
                     this.navCtrl.push(ServicesPage, {
                         type: btn.dataset.service
@@ -45,6 +46,6 @@ export class SearchPage {
     }
 
     startSearch() {
-        alert('go go go');
+        this.navCtrl.push(AgentPage, {});
     }
 }

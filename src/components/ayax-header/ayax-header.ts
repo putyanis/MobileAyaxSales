@@ -1,14 +1,16 @@
-import {Component} from '@angular/core';
+import {AfterViewInit, Component} from '@angular/core';
 import {MenuController, NavController} from "ionic-angular";
 import {Storage} from '@ionic/storage';
 
 import {AyaxRest} from '../../classes/ayaxrest';
+import {SearchPage} from "../../pages/search/search";
 
 @Component({
     selector: 'ayax-header',
     templateUrl: 'ayax-header.html'
 })
-export class AyaxHeaderComponent {
+
+export class AyaxHeaderComponent implements AfterViewInit {
     private header : HTMLElement;
     private burger : HTMLElement;
 
@@ -30,21 +32,33 @@ export class AyaxHeaderComponent {
         this.header = document.querySelector(".js-header");
         this.burger = this.header.querySelector(".js-burger");
 
-        this.burger.addEventListener("click", this.toggleMenu.bind(this));
+        try
+        {
+            this.burger.addEventListener("click", () => {
+                this.menu.toggle();
+            });
 
-        this.storage.get('user').then((val) => {
-            this.avatar = val.avatar.src;
-            this.displayName = val.displayName;
-        });
+            this.storage.get('user').then((val) => {
+                if (val.avatar)
+                    this.avatar = val.avatar.src;
 
-        this.AR.get('UserServices').then((res) => {
-            this.favoriteCount = res.data.favorite;
-            this.compareCount = res.data.compare;
-        });
-    }
+                this.displayName = val.displayName;
+            });
 
-    toggleMenu() {
-        this.menu.toggle();
+            this.AR.get('UserServices').then((res) => {
+                this.favoriteCount = res.data.favorite;
+                this.compareCount = res.data.compare;
+            });
+
+            let logo = document.querySelector(".js-logo");
+            if (logo)
+                logo.addEventListener("click", () => {
+                    this.navCtrl.push(SearchPage);
+                });
+        }
+        catch (e) {
+            console.log(e);
+        }
     }
 
 }

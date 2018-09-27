@@ -1,3 +1,41 @@
 page-services {
-
+    .services
+    {
+    
+    }
+    
+    .service
+    {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        border-bottom: 1px solid #ccc;
+        padding: 16px 16px 16px;
+        background: linear-gradient(to top, #F6F9F9, #ECEDED, #F6F9F9);
+    }
+    
+    .service:last-child
+    {
+        border-bottom: 0;
+    }
+    
+    .service__icon
+    {
+        display: block;
+        max-width: 30px;
+        height: auto;
+        margin-right: 16px;
+    }
+    
+    .service__name
+    {
+        font-size: 16px;
+    }
+    
+    .service__to-detail
+    {
+        font-size: 30px;
+        margin-left: auto;
+    }
 }
