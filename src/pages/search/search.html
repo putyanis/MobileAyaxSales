@@ -1,1 +1,93 @@
 <ayax-header></ayax-header>
+
+<ion-content>
+    <div class="inner-page main-page">
+        <div class="title">Я хочу</div>
+
+        <form>
+            <div class="contract-list">
+                <div class="contract-check">
+                    <input type="radio" name="cat2" checked id="catCheck3">
+                    <label for="catCheck3">Купить</label>
+                </div>
+                <div class="contract-check">
+                    <input type="radio" name="cat2" id="catCheck4">
+                    <label for="catCheck4">Продать</label>
+                </div>
+            </div>
+
+            <div class="title title_smaller">выберите категорию</div>
+
+            <div class="categories">
+                <div class="categories-list categories-list_flat">
+                    <div class="cat-check cat-check_flat">
+                        <input type="checkbox" id="ch12">
+                        <label for="ch12">Студия</label>
+                    </div>
+                    <div class="cat-check cat-check_flat">
+                        <input type="checkbox" id="ch13">
+                        <label for="ch13">1к</label>
+                    </div>
+                    <div class="cat-check cat-check_flat">
+                        <input type="checkbox" id="ch14">
+                        <label for="ch14">2к</label>
+                    </div>
+                    <div class="cat-check cat-check_flat">
+                        <input type="checkbox" id="ch15">
+                        <label for="ch15">3к</label>
+                    </div>
+                    <div class="cat-check cat-check_flat">
+                        <input type="checkbox" id="ch16">
+                        <label for="ch16">4к</label>
+                    </div>
+                    <div class="cat-check cat-check_flat">
+                        <input type="checkbox" id="ch17">
+                        <label for="ch17">5к</label>
+                    </div>
+                </div>
+                <div class="categories-list">
+                    <div class="cat-check">
+                        <input type="checkbox" id="ch7">
+                        <label for="ch7">Дом</label>
+                    </div>
+                    <div class="cat-check">
+                        <input type="checkbox" id="ch8">
+                        <label for="ch8">Участок</label>
+                    </div>
+                    <div class="cat-check">
+                        <input type="checkbox" id="ch9">
+                        <label for="ch9">Коммерцию</label>
+                    </div>
+                    <div class="cat-check">
+                        <input type="checkbox" id="ch10">
+                        <label for="ch10">Новостройку</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="title title_smaller">выберите район</div>
+
+            <div class="districts-list">
+                <div *ngFor="let district of districts" class="district-checkbox">
+                    <input type="checkbox" value="{{district._id}}" id="{{district._id}}" />
+                    <label for="{{district._id}}">
+                        {{district.name}}
+                    </label>
+                </div>
+            </div>
+
+            <div class="submit-search">
+                <span class="submit-search__button js-start-search">Найти</span>
+            </div>
+        </form>
+
+        <div class="title">Наши услуги</div>
+
+        <div class="service-buttons">
+            <span data-service="ipoteka" class="service-buttons__button service-buttons__button_ipoteka js-service">Сопровождение ипотеки</span>
+            <span data-service="yuristy" class="service-buttons__button service-buttons__button_yurist js-service">Юридические услуги</span>
+            <span data-service="otsenka" class="service-buttons__button service-buttons__button_otsenka js-service">Оценка</span>
+        </div>
+
+    </div>
+</ion-content>

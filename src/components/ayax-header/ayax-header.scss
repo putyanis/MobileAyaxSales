@@ -11,6 +11,7 @@ ayax-header {
         height: 50px;
         top: 0;
         left: 0;
+        z-index: 110;
     }
     
     .burger
@@ -70,6 +71,7 @@ ayax-header {
         position: absolute;
         width: 100%;
         box-sizing: border-box;
+        z-index: 100;
     }
     
     .side-agent

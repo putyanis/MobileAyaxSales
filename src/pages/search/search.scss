@@ -1,3 +1,224 @@
 page-search {
-
+    .main-page {
+        padding-top: 24px;
+    }
+    
+    .title {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 16px;
+    }
+    
+    .title_smaller {
+        font-size: 20px;
+    }
+    
+    .contract-list {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+        margin-bottom: 32px;
+    }
+    
+    .contract-check {
+        position: relative;
+        margin: 0 8px;
+    }
+    
+    .contract-check input {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        display: block;
+    }
+    
+    .contract-check label {
+        display: block;
+        color: #e13d3c;
+        border: 2px solid #e13d3c;
+        padding: 6px 24px;
+        text-transform: uppercase;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+    
+    .contract-check input:checked + label {
+        background: #e13d3c;
+        color: #fff;
+    }
+    
+    .categories {
+        margin-bottom: 16px;
+    }
+    
+    .categories-list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin: 0 16px;
+    }
+    
+    .categories-list_flat {
+        justify-content: center;
+    }
+    
+    .cat-check {
+        position: relative;
+        width: calc(50% - 8px);
+        text-align: center;
+        margin-bottom: 16px;
+    }
+    
+    .cat-check input {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        display: block;
+    }
+    
+    .cat-check label {
+        display: block;
+        color: #e13d3c;
+        border: 2px solid #e13d3c;
+        padding: 6px 24px;
+        text-transform: uppercase;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+    
+    .cat-check input:checked + label {
+        background: #e13d3c;
+        color: #fff;
+    }
+    
+    .map {
+        display: block;
+        margin-bottom: 32px;
+    }
+    
+    .submit-search {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 32px;
+    }
+    
+    .submit-search__button {
+        color: #fff;
+        text-align: center;
+        padding: 10px 36px;
+        border-radius: 4px;
+        display: block;
+        background: #4baf4f;
+        text-transform: uppercase;
+        font-size: 14px;
+    }
+    
+    .service-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    
+    .service-buttons__button {
+        display: block;
+        padding: 10px 0;
+        text-align: center;
+        font-size: 14px;
+        text-transform: uppercase;
+        border-radius: 4px;
+        color: #fff;
+        width: 80%;
+        margin-bottom: 16px;
+        cursor: pointer;
+    }
+    
+    .service-buttons__button:last-child {
+        margin-bottom: 0;
+    }
+    
+    .service-buttons__button_ipoteka {
+        background: rgba(192, 99, 182, 1);
+        border-bottom: 2px solid rgb(119, 50, 111);
+    }
+    
+    .service-buttons__button_yurist {
+        background: rgba(55, 131, 183, 1);
+        border-bottom: 2px solid rgb(17, 78, 147);
+    }
+    
+    .service-buttons__button_otsenka {
+        background: rgba(234, 139, 63, 1);
+        border-bottom: 2px solid rgb(195, 116, 52);
+    }
+    
+    .cat-check_flat {
+        width: auto;
+    }
+    
+    .cat-check_flat label {
+        padding: 6px 10px;
+        margin: 0 4px;
+    }
+    
+    .districts-list {
+        padding: 16px;
+        height: 188px;
+        overflow-y: scroll;
+        margin-bottom: 16px;
+        position: relative;
+        margin-top: -8px;
+    }
+    
+    .district-checkbox {
+        position: relative;
+        padding-left: 20px;
+        cursor: pointer;
+        margin-bottom: 12px;
+        
+        span {
+            position: relative;
+            z-index: 7;
+        }
+        
+        input[type="checkbox"] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            z-index: 5;
+        }
+        
+        label:after {
+            position: absolute;
+            content: '';
+            display: block;
+            width: 16px;
+            height: 16px;
+            background: url("../../assets/imgs/checkbox-rect.png") 0 0;
+            top: 0;
+            left: 0;
+        }
+    
+        input[type="checkbox"]:checked + label:after {
+            background-position: -16px 0;
+        }
+        
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
 }

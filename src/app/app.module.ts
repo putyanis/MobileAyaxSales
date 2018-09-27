@@ -8,6 +8,7 @@ import {IonicStorageModule} from '@ionic/storage';
 import {MyApp} from './app.component';
 import {MainPage} from '../pages/main/main';
 import {SearchPage} from "../pages/search/search";
+import {ServicesPage} from "../pages/services/services";
 
 import {AyaxHeaderComponent} from "../components/ayax-header/ayax-header";
 
@@ -17,6 +18,7 @@ import {AyaxHeaderComponent} from "../components/ayax-header/ayax-header";
         MyApp,
         MainPage,
         SearchPage,
+        ServicesPage,
         AyaxHeaderComponent
     ],
     imports: [
@@ -28,7 +30,8 @@ import {AyaxHeaderComponent} from "../components/ayax-header/ayax-header";
     entryComponents: [
         MyApp,
         MainPage,
-        SearchPage
+        SearchPage,
+        ServicesPage
     ],
     providers: [
         StatusBar,
