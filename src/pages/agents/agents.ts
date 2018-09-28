@@ -1,25 +1,42 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the AgentsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AyaxRest} from "../../classes/ayaxrest";
+import {AgentPage} from "../agent/agent";
 
 @IonicPage()
 @Component({
-  selector: 'page-agents',
-  templateUrl: 'agents.html',
+    selector: 'page-agents',
+    templateUrl: 'agents.html',
 })
 export class AgentsPage {
+    public agents: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+    private AR: AyaxRest;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AgentsPage');
-  }
+    constructor(public navCtrl: NavController, public navParams: NavParams) {
+        this.AR = new AyaxRest();
+    }
 
+    ionViewDidLoad() {
+        this.AR.get('SellAgent', {
+            filter: this.navParams.get('filter')
+        }).then((res) => {
+            this.agents = res.data.rows;
+            this.setEvents();
+        });
+    }
+
+    setEvents() {
+        let agents = document.querySelectorAll(".js-agent-list");
+        if (agents) {
+            [].forEach.call(agents, (agent) => {
+                console.log(agent);
+                agent.addEventListener("click", (event) => {
+                    this.navCtrl.push(AgentPage, {
+                        type: agent.dataset.id
+                    });
+                });
+            });
+        }
+    }
 }

@@ -4,14 +4,14 @@
     <div class="inner-page main-page">
         <div class="title">Я хочу</div>
 
-        <form>
+        <form class="js-search-form" method="get" action="/">
             <div class="contract-list">
                 <div class="contract-check">
-                    <input type="radio" name="cat2" checked id="catCheck3">
+                    <input type="radio" name="contract" value="buy" checked id="catCheck3">
                     <label for="catCheck3">Купить</label>
                 </div>
                 <div class="contract-check">
-                    <input type="radio" name="cat2" id="catCheck4">
+                    <input type="radio" name="contract" value="sell" id="catCheck4">
                     <label for="catCheck4">Продать</label>
                 </div>
             </div>
@@ -21,45 +21,45 @@
             <div class="categories">
                 <div class="categories-list categories-list_flat">
                     <div class="cat-check cat-check_flat">
-                        <input type="checkbox" id="ch12">
+                        <input type="checkbox" id="ch12" name="category[]" value="FLAT:R0">
                         <label for="ch12">Студия</label>
                     </div>
                     <div class="cat-check cat-check_flat">
-                        <input type="checkbox" id="ch13">
+                        <input type="checkbox" id="ch13" name="category[]" value="FLAT:R1">
                         <label for="ch13">1к</label>
                     </div>
                     <div class="cat-check cat-check_flat">
-                        <input type="checkbox" id="ch14">
+                        <input type="checkbox" id="ch14" name="category[]" value="FLAT:R2">
                         <label for="ch14">2к</label>
                     </div>
                     <div class="cat-check cat-check_flat">
-                        <input type="checkbox" id="ch15">
+                        <input type="checkbox" id="ch15" name="category[]" value="FLAT:R3">
                         <label for="ch15">3к</label>
                     </div>
                     <div class="cat-check cat-check_flat">
-                        <input type="checkbox" id="ch16">
+                        <input type="checkbox" id="ch16" name="category[]" value="FLAT:R4">
                         <label for="ch16">4к</label>
                     </div>
                     <div class="cat-check cat-check_flat">
-                        <input type="checkbox" id="ch17">
+                        <input type="checkbox" id="ch17" name="category[]" value="FLAT:R5">
                         <label for="ch17">5к</label>
                     </div>
                 </div>
                 <div class="categories-list">
                     <div class="cat-check">
-                        <input type="checkbox" id="ch7">
+                        <input type="checkbox" id="ch7" name="category[]" value="HOUSE">
                         <label for="ch7">Дом</label>
                     </div>
                     <div class="cat-check">
-                        <input type="checkbox" id="ch8">
+                        <input type="checkbox" id="ch8" name="category[]" value="LAND">
                         <label for="ch8">Участок</label>
                     </div>
                     <div class="cat-check">
-                        <input type="checkbox" id="ch9">
+                        <input type="checkbox" id="ch9" name="category[]" value="COMMERCIAL">
                         <label for="ch9">Коммерцию</label>
                     </div>
                     <div class="cat-check">
-                        <input type="checkbox" id="ch10">
+                        <input type="checkbox" id="ch10" name="category[]" value="NEWB">
                         <label for="ch10">Новостройку</label>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
 
             <div class="districts-list">
                 <div *ngFor="let district of districts" class="district-checkbox">
-                    <input type="checkbox" value="{{district._id}}" id="{{district._id}}" />
+                    <input type="checkbox" value="{{district._id}}" id="{{district._id}}" name="district[]" />
                     <label for="{{district._id}}">
                         {{district.name}}
                     </label>

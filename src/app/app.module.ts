@@ -10,6 +10,7 @@ import {MainPage} from '../pages/main/main';
 import {SearchPage} from "../pages/search/search";
 import {ServicesPage} from "../pages/services/services";
 import {AgentPage} from "../pages/agent/agent";
+import {AgentsPage} from "../pages/agents/agents";
 
 import {AyaxHeaderComponent} from "../components/ayax-header/ayax-header";
 
@@ -21,6 +22,7 @@ import {AyaxHeaderComponent} from "../components/ayax-header/ayax-header";
         SearchPage,
         AyaxHeaderComponent,
         AgentPage,
+        AgentsPage,
         ServicesPage
     ],
     imports: [
@@ -34,6 +36,7 @@ import {AyaxHeaderComponent} from "../components/ayax-header/ayax-header";
         MainPage,
         SearchPage,
         AgentPage,
+        AgentsPage,
         ServicesPage,
         AyaxHeaderComponent,
     ],

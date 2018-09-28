@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {AyaxRest} from "../../classes/ayaxrest";
 import {ServicesPage} from "../services/services";
-import {AgentPage} from "../agent/agent";
+import {AgentsPage} from "../agents/agents";
 
 @IonicPage()
 @Component({
@@ -46,6 +46,15 @@ export class SearchPage {
     }
 
     startSearch() {
-        this.navCtrl.push(AgentPage, {});
+        let form: HTMLFormElement = document.querySelector(".js-search-form");
+        let formData = new FormData(form);
+
+        this.navCtrl.push(AgentsPage, {
+            filter: {
+                contract: formData.get('contract'),
+                category: formData.getAll('category[]'),
+                district: formData.getAll('district[]')
+            }
+        });
     }
 }
