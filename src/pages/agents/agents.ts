@@ -22,20 +22,18 @@ export class AgentsPage {
             filter: this.navParams.get('filter')
         }).then((res) => {
             this.agents = res.data.rows;
-            this.setEvents();
+            console.log(this.agents);
         });
     }
 
-    setEvents() {
-        let agents = document.querySelectorAll(".js-agent-list");
-        if (agents) {
-            [].forEach.call(agents, (agent) => {
-                agent.addEventListener("click", (event) => {
-                    this.navCtrl.push(AgentPage, {
-                        type: agent.dataset.id
-                    });
-                });
-            });
-        }
+    openAgentPage(agentID) {
+        this.navCtrl.push(AgentPage, {
+            filter: this.navParams.get('filter'),
+            type: agentID
+        });
+    }
+
+    addActiveClass(i, rate) {
+        return i <= rate;
     }
 }

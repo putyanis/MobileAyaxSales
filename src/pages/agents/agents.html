@@ -5,18 +5,14 @@
         <div class="title">Лучшие агенты для Вас</div>
 
         <div class="agents">
-            <div class="agent js-agent-list" *ngFor="let agent of agents" data-id="{{agent.id}}">
+            <div class="agent" *ngFor="let agent of agents" data-id="{{agent.id}}" (click)="openAgentPage(agent.id)">
                 <div class="agent__image">
                     <img src="{{agent.avatar.src}}" class="agent__image-img"/>
                 </div>
                 <div class="agent__info">
                     <div class="agent__name">{{agent.displayname}}</div>
                     <div class="agent__rate">
-                        <span class="mdi mdi-star agent__rate-start agent__rate-start_act"></span>
-                        <span class="mdi mdi-star agent__rate-start agent__rate-start_act"></span>
-                        <span class="mdi mdi-star agent__rate-start agent__rate-start_act"></span>
-                        <span class="mdi mdi-star agent__rate-start agent__rate-start_act"></span>
-                        <span class="mdi mdi-star agent__rate-start"></span>
+                        <span *ngFor="let i of [1, 2, 3, 4, 5]" class="mdi mdi-star agent__rate-start" [ngClass]="{'agent__rate-start_act' : addActiveClass(i, agent.rate)}"></span>
                     </div>
                     <div class="agent__objects-found">
                         Найдено {{agent.objectCount}} объектов
