@@ -38,7 +38,7 @@ export class SearchPage {
             [].forEach.call(serviceButtons, (btn) => {
                 btn.addEventListener("click", (event) => {
                     this.navCtrl.push(ServicesPage, {
-                        type: btn.dataset.service
+                        service: btn.dataset.service
                     });
                 });
             });

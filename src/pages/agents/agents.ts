@@ -30,7 +30,6 @@ export class AgentsPage {
         let agents = document.querySelectorAll(".js-agent-list");
         if (agents) {
             [].forEach.call(agents, (agent) => {
-                console.log(agent);
                 agent.addEventListener("click", (event) => {
                     this.navCtrl.push(AgentPage, {
                         type: agent.dataset.id

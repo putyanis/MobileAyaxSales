@@ -51,13 +51,21 @@ export class AyaxRest {
     }
 
     private buildQuery(path: string, params: object = {}) {
+        const base = [
+            'filter', 'select', 'order', 'paging'
+        ];
         let query = [];
         for (let groupName in params ) {
-            let subQuery = [];
-            for (let paramName in params[groupName]) {
-                subQuery.push(paramName + '=' + params[groupName][paramName]);
+            if (base.indexOf(groupName) !== -1) {
+                let subQuery = [];
+                for (let paramName in params[groupName]) {
+                    subQuery.push(paramName + '=' + params[groupName][paramName]);
+                }
+                query.push(groupName + '=' + subQuery.join(';'));
             }
-            query.push(groupName + '=' + subQuery.join(';'));
+            else {
+                query.push(groupName + '=' + params[groupName]);
+            }
         }
         let queryString = query.length > 0 ? '?' + query.join('&') : '';
         return path + '/' + queryString;

@@ -9,6 +9,7 @@ import {MyApp} from './app.component';
 import {MainPage} from '../pages/main/main';
 import {SearchPage} from "../pages/search/search";
 import {ServicesPage} from "../pages/services/services";
+import {ServicePage} from "../pages/service/service";
 import {AgentPage} from "../pages/agent/agent";
 import {AgentsPage} from "../pages/agents/agents";
 
@@ -23,7 +24,8 @@ import {AyaxHeaderComponent} from "../components/ayax-header/ayax-header";
         AyaxHeaderComponent,
         AgentPage,
         AgentsPage,
-        ServicesPage
+        ServicesPage,
+        ServicePage
     ],
     imports: [
         BrowserModule,
@@ -38,6 +40,7 @@ import {AyaxHeaderComponent} from "../components/ayax-header/ayax-header";
         AgentPage,
         AgentsPage,
         ServicesPage,
+        ServicePage,
         AyaxHeaderComponent,
     ],
     providers: [

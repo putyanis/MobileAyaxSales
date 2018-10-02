@@ -32,6 +32,8 @@ export class MainPage {
         this.AR = new AyaxRest();
         this.MSG  = new Message(this.alertCtrl);
 
+        // this.storage.clear();
+
         this.storage.get('user').then((val) => {
             if (val && (val.registrationSkipped || val.id))
                 this.navCtrl.push(SearchPage);

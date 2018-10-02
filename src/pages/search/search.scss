@@ -76,7 +76,8 @@ page-search {
         display: block;
     }
     
-    .cat-check label {
+    .cat-check label,
+    .cat-check__label {
         display: block;
         color: #e13d3c;
         border: 2px solid #e13d3c;
@@ -89,6 +90,12 @@ page-search {
     
     .cat-check input:checked + label {
         background: #e13d3c;
+        color: #fff;
+    }
+    
+    .cat-check_newb .cat-check__label {
+        border-color: #1687d6;
+        background: #1687d6;
         color: #fff;
     }
     

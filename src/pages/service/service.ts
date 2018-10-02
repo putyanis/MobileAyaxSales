@@ -1,25 +1,31 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ServicePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AyaxRest} from "../../classes/ayaxrest";
 
 @IonicPage()
 @Component({
-  selector: 'page-service',
-  templateUrl: 'service.html',
+    selector: 'page-service',
+    templateUrl: 'service.html',
 })
 export class ServicePage {
+    private AR: AyaxRest;
+    public serviceTitle: string;
+    public serviceHTML: string;
+    public servicePrice: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+    constructor(public navCtrl: NavController, public navParams: NavParams) {
+        this.AR = new AyaxRest();
+    }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ServicePage');
-  }
+    ionViewDidLoad() {
+        this.AR.get('Service/' + this.navParams.get('id')).then((res) => {
+            this.serviceTitle = res.data.name;
+            this.serviceHTML = res.data.text;
+            this.servicePrice = res.data.price;
+        });
+    }
 
+    openServiceForm(serviceName) {
+        console.log(serviceName);
+    }
 }
