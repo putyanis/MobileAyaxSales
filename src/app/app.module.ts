@@ -14,6 +14,14 @@ import {AgentPage} from "../pages/agent/agent";
 import {AgentsPage} from "../pages/agents/agents";
 
 import {AyaxHeaderComponent} from "../components/ayax-header/ayax-header";
+import {NewBPage} from "../pages/new-b/new-b";
+import {ComparePage} from "../pages/compare/compare";
+import {FavoritePage} from "../pages/favorite/favorite";
+import {ObjectPage} from "../pages/object/object";
+import {ReviewPage} from "../pages/review/review";
+import {SettingsPage} from "../pages/settings/settings";
+import {AgentFeedbackPage} from "../pages/agent-feedback/agent-feedback";
+import {ObjectRequestPage} from "../pages/object-request/object-request";
 
 
 @NgModule({
@@ -25,7 +33,15 @@ import {AyaxHeaderComponent} from "../components/ayax-header/ayax-header";
         AgentPage,
         AgentsPage,
         ServicesPage,
-        ServicePage
+        ServicePage,
+        NewBPage,
+        ComparePage,
+        FavoritePage,
+        ObjectPage,
+        ReviewPage,
+        SettingsPage,
+        AgentFeedbackPage,
+        ObjectRequestPage,
     ],
     imports: [
         BrowserModule,
@@ -42,6 +58,14 @@ import {AyaxHeaderComponent} from "../components/ayax-header/ayax-header";
         ServicesPage,
         ServicePage,
         AyaxHeaderComponent,
+        NewBPage,
+        ComparePage,
+        FavoritePage,
+        ObjectPage,
+        ReviewPage,
+        SettingsPage,
+        AgentFeedbackPage,
+        ObjectRequestPage,
     ],
     providers: [
         StatusBar,

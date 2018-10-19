@@ -1,8 +1,6 @@
-<ayax-header></ayax-header>
-
 <ion-content>
     <div class="inner-page main-page">
-        <div class="title">Сопровождение ипотеки</div>
+        <div class="title">{{serviceSectionName}}</div>
 
         <div class="services">
             <div class="service" *ngFor="let service of services" (click)="openService(service.id)">

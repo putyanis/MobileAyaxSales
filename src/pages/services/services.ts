@@ -10,6 +10,7 @@ import {ServicePage} from "../service/service";
 })
 export class ServicesPage {
     public services : any;
+    public serviceSectionName: string = '';
 
     private AR;
     private serviceType: string;
@@ -20,6 +21,18 @@ export class ServicesPage {
     }
 
     ionViewDidLoad() {
+        switch (this.navParams.get('service')){
+            case 'ipoteka':
+                this.serviceSectionName = 'Сопровождение ипотеки';
+                break;
+            case 'yurist':
+                this.serviceSectionName = 'Юридические услуги';
+                break;
+            case 'otsenka':
+                this.serviceSectionName = 'Оценка';
+                break;
+        }
+
         this.AR.get('Service', {
             type: this.navParams.get('service')
         }).then((res) => {

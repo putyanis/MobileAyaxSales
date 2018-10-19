@@ -1,25 +1,47 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AyaxRest, AyaxRestParams} from "../../classes/ayaxrest";
 
-/**
- * Generated class for the ReviewPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+interface AgentReview {
+    author: string,
+    text: string,
+    date: string
+}
 
 @IonicPage()
 @Component({
-  selector: 'page-review',
-  templateUrl: 'review.html',
+    selector: 'page-review',
+    templateUrl: 'review.html',
 })
+
 export class ReviewPage {
+    public agentID: number;
+    public reviews: Array<AgentReview> = [];
+    public agent: any;
+    private AR: AyaxRest;
+    private nextPage: number = 1;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+    constructor(public navCtrl: NavController, public navParams: NavParams) {
+        this.agentID = this.navParams.get("id");
+        this.AR = new AyaxRest();
+    }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ReviewPage');
-  }
+    ionViewDidLoad() {
+        this.loadPage();
+    }
 
+    loadPage() {
+        this.AR.get('Review', {
+            filter : {
+                property_agent : this.agentID
+            },
+            paging : {
+                num : this.nextPage
+            }
+        }).then((res) => {
+            this.reviews = this.reviews.concat(res.data.rows);
+            this.agent = res.data.agents[this.agentID];
+            this.nextPage = res.data.pager.next;
+        });
+    }
 }

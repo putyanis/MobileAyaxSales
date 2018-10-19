@@ -1,11 +1,9 @@
-<ayax-header></ayax-header>
-
 <ion-content>
     <div class="inner-page main-page">
         <div class="title">Лучшие агенты для Вас</div>
 
         <div class="agents">
-            <div class="agent" *ngFor="let agent of agents" data-id="{{agent.id}}" (click)="openAgentPage(agent.id)">
+            <div class="agent" *ngFor="let agent of agents" data-id="{{agent.id}}" (click)="openAgentPage(agent.login)">
                 <div class="agent__image">
                     <img src="{{agent.avatar.src}}" class="agent__image-img"/>
                 </div>
@@ -14,8 +12,8 @@
                     <div class="agent__rate">
                         <span *ngFor="let i of [1, 2, 3, 4, 5]" class="mdi mdi-star agent__rate-start" [ngClass]="{'agent__rate-start_act' : addActiveClass(i, agent.rate)}"></span>
                     </div>
-                    <div class="agent__objects-found">
-                        Найдено {{agent.objectCount}} объектов
+                    <div class="agent__objects-found" *ngIf="getObjectsCount(agent.objectCount) > 0">
+                        Найдено объектов: {{getObjectsCount(agent.objectCount)}}
                     </div>
                 </div>
                 <span class="agent__detail mdi mdi-chevron-right"></span>

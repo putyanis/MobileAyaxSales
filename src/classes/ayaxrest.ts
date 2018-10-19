@@ -4,7 +4,8 @@ export interface AyaxRestParams {
     filter?: object,
     order?: object,
     select?: object,
-    paging?: object
+    paging?: object,
+    type?: any
 }
 
 export class AyaxRest {
@@ -12,7 +13,8 @@ export class AyaxRest {
 
     constructor() {
         this.axiosInstance = axios.create({
-            baseURL : 'https://www.ayax.ru/api/v1/',
+            //baseURL : 'https://www.ayax.ru/api/v1/',
+            baseURL : 'http://www.ayax.local/api/v1/',
             timeout: 5000,
             auth: {
                 username: 'restapiuser',
@@ -68,6 +70,7 @@ export class AyaxRest {
             }
         }
         let queryString = query.length > 0 ? '?' + query.join('&') : '';
+        // console.log(path + '/' + queryString);
         return path + '/' + queryString;
     }
 }

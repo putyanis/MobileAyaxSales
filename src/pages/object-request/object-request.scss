@@ -1,0 +1,60 @@
+page-object-request {
+    .ns-form
+    {
+        margin: 0 16px;
+    }
+    
+    .ns-field
+    {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+    }
+    
+    .ns-title
+    {
+        width: 100%;
+        font-weight: bold;
+        margin-bottom: 16px;
+    }
+    
+    .ns-field__input
+    {
+        display: block;
+        box-sizing: border-box;
+        padding: 8px 9px 10px;
+        width: 100%;
+        background: transparent;
+        border: 1px solid #b5b6b7;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+    
+    .ns-field__input_text {
+        height: 130px;
+    }
+    
+    .ns-submit
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 24px;
+    }
+    
+    .ns-submit__button
+    {
+        color: #fff;
+        text-align: center;
+        padding: 10px 36px;
+        border-radius: 4px;
+        display: block;
+        text-transform: uppercase;
+        background: #cc2206;
+        border-bottom: 2px solid #56160b;
+        font-size: 14px;
+        cursor: pointer;
+    }
+}

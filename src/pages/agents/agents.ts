@@ -22,18 +22,26 @@ export class AgentsPage {
             filter: this.navParams.get('filter')
         }).then((res) => {
             this.agents = res.data.rows;
-            console.log(this.agents);
         });
     }
 
-    openAgentPage(agentID) {
+    openAgentPage(agentEmail) {
         this.navCtrl.push(AgentPage, {
             filter: this.navParams.get('filter'),
-            type: agentID
+            agentEmail: agentEmail.replace('@ayax.ru', '')
         });
     }
 
     addActiveClass(i, rate) {
         return i <= rate;
+    }
+
+    getObjectsCount(objectCount) {
+        let sum: number = 0;
+
+        for (let key in objectCount) {
+            sum += objectCount[key];
+        }
+        return sum;
     }
 }

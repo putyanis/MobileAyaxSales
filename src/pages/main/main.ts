@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams, LoadingController} from 'ionic-angular';
+import {Component, ElementRef} from '@angular/core';
+import {AlertController, IonicPage, NavController, NavParams, LoadingController, Events} from 'ionic-angular';
 
 import {AyaxRest} from '../../classes/ayaxrest';
 import {AyaxLoader} from '../../classes/ayaxloader';
@@ -27,7 +27,9 @@ export class MainPage {
                 public navParams: NavParams,
                 public alertCtrl: AlertController,
                 public loadingCtrl: LoadingController,
-                private storage: Storage
+                private storage: Storage,
+                private element: ElementRef,
+                public events: Events
     ) {
         this.AR = new AyaxRest();
         this.MSG  = new Message(this.alertCtrl);
@@ -46,17 +48,17 @@ export class MainPage {
     }
 
     ionViewDidLoad() {
-        this.loginForm = document.querySelector(".js-login-form");
+        this.loginForm = this.element.nativeElement.querySelector(".js-login-form");
         this.loginForm.addEventListener("click", this.processForm.bind(this));
-
-        document.querySelector(".js-skip-auth").addEventListener("click", () => {
-            this.storage.set('user', {
-                registrationSkipped : true
-            });
-            this.navCtrl.push(SearchPage);
-        });
-
         this.showState(this.state);
+    }
+
+    skipRegistration() {
+        this.storage.set('user', {
+            registrationSkipped : true
+        });
+        this.events.publish('user:skipRegistration', {});
+        this.navCtrl.push(SearchPage);
     }
 
     processForm(event) {

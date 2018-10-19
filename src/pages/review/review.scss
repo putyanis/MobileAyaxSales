@@ -1,3 +1,84 @@
 page-review {
-
+    .reviews
+    {
+    
+    }
+    
+    .review
+    {
+        font-size: 16px;
+        padding: 0 16px 16px;
+        margin-bottom: 16px;
+        border-bottom: 1px solid #ccc;
+    }
+    
+    /*.review:last-child
+    {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: 0;
+    }*/
+    
+    .review__info
+    {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+    
+    .review__author
+    {
+        font-size: 16px;
+        margin-bottom: 6px;
+        font-weight: bold;
+    }
+    
+    .review__date
+    {
+        font-style: italic;
+        color: #921a1a;
+        margin-top: 12px;
+        font-size: 14px;
+        text-align: right;
+    }
+    
+    .review-text
+    {
+    
+    }
+    
+    .title_reviews
+    {
+        margin-bottom: 24px;
+    }
+    
+    .submit-search__button
+    {
+        color: #fff;
+        text-align: center;
+        padding: 10px 36px;
+        border-radius: 4px;
+        display: block;
+        background: #4BAF4F;
+        text-transform: uppercase;
+        font-size: 14px;
+    }
+    
+    .submit-search__button_load
+    {
+        margin-top: 16px;
+        background: #1370ab;
+        border-bottom: 2px solid #18435f;
+        font-size: 12px;
+    }
+    
+    .submit-search
+    {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 32px;
+    }
 }

@@ -1,8 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, ElementRef} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {AyaxRest} from "../../classes/ayaxrest";
 import {ServicesPage} from "../services/services";
 import {AgentsPage} from "../agents/agents";
+import {NewBPage} from "../new-b/new-b";
+import {ObjectPage} from "../object/object";
 
 @IonicPage()
 @Component({
@@ -14,7 +16,8 @@ export class SearchPage {
     private AR: AyaxRest;
 
     constructor(public navCtrl: NavController,
-                public navParams: NavParams
+                public navParams: NavParams,
+                private element: ElementRef
     ) {
         this.AR = new AyaxRest();
     }
@@ -28,12 +31,7 @@ export class SearchPage {
     }
 
     initView() {
-        let startSearchBnt = document.querySelector(".js-start-search");
-        if (startSearchBnt) {
-            startSearchBnt.addEventListener("click", this.startSearch.bind(this));
-        }
-
-        let serviceButtons = document.querySelectorAll(".js-service");
+        let serviceButtons = this.element.nativeElement.querySelectorAll(".js-service");
         if (serviceButtons) {
             [].forEach.call(serviceButtons, (btn) => {
                 btn.addEventListener("click", (event) => {
@@ -46,7 +44,7 @@ export class SearchPage {
     }
 
     startSearch() {
-        let form: HTMLFormElement = document.querySelector(".js-search-form");
+        let form: HTMLFormElement = this.element.nativeElement.querySelector(".js-search-form");
         let formData = new FormData(form);
 
         this.navCtrl.push(AgentsPage, {
@@ -56,5 +54,9 @@ export class SearchPage {
                 district: formData.getAll('district[]')
             }
         });
+    }
+
+    goNewB() {
+        this.navCtrl.push(NewBPage);
     }
 }

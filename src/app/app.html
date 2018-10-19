@@ -1,1 +1,43 @@
+<div [ngClass]="showToolbar == false ? 'hidden' : ''">
+    <ion-toolbar #ayaxHeader>
+        <div class="header js-header">
+            <div class="burger js-burger" (click)="menu.toggle()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <img src="../assets/imgs/logo-white.svg" class="main-logo js-logo" (click)="loadMainPage()" width="66" height="21">
+            <div class="sub-icons">
+                <span (click)="loadFavorites()" class="mdi mdi-star-outline favorites"></span>
+                <span (click)="loadCompare()" class="mdi mdi-compare comparison"></span>
+            </div>
+        </div>
+    </ion-toolbar>
+
+    <ion-menu [content]="ayaxHeader">
+        <div class="a-menu">
+            <div class="side-agent">
+                <span class="side-agent__shadow"></span>
+                <div class="side-agent__img" *ngIf="avatar">
+                    <img src="{{avatar}}" class="side-agent__image"/>
+                </div>
+                <div class="side-agent__name" *ngIf="displayName">{{displayName}}</div>
+            </div>
+            <div class="aside-list">
+                <a href="" class="aside-list__item" (click)="loadFavorites()">
+                    <span class="mdi mdi-star-outline aside-list__icon"></span>Избранное
+                    <span class="aside-list__unread">{{favoriteCount}}</span>
+                </a>
+                <a href="" class="aside-list__item" (click)="loadCompare()">
+                    <span class="mdi mdi-compare aside-list__icon"></span>Сравнение
+                    <span class="aside-list__unread">{{compareCount}}</span>
+                </a>
+                <a *ngIf="showEnterButton == false" (click)="loadSettingsPage()" class="aside-list__item"><span class="mdi mdi-settings aside-list__icon"></span>Настройки</a>
+
+                <a *ngIf="showEnterButton == true" (click)="loadLoginPage()" class="aside-list__item"><span class="mdi mdi-login aside-list__icon"></span>Войти</a>
+            </div>
+        </div>
+    </ion-menu>
+</div>
+
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

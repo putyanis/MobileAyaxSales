@@ -1,5 +1,3 @@
-<ayax-header></ayax-header>
-
 <ion-content>
     <div class="inner-page main-page">
         <div class="title">Я хочу</div>
@@ -59,7 +57,7 @@
                         <label for="ch9">Коммерцию</label>
                     </div>
                     <div class="cat-check cat-check_newb">
-                        <div class="cat-check__label">Новостройку</div>
+                        <div class="cat-check__label" (click)="goNewB()">Новостройку</div>
                     </div>
                 </div>
             </div>
@@ -76,7 +74,7 @@
             </div>
 
             <div class="submit-search">
-                <span class="submit-search__button js-start-search">Найти</span>
+                <span class="submit-search__button js-start-search" (click)="startSearch()">Найти</span>
             </div>
         </form>
 

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, Component, ElementRef} from '@angular/core';
 import {MenuController, NavController} from "ionic-angular";
 import {Storage} from '@ionic/storage';
 
@@ -23,13 +23,14 @@ export class AyaxHeaderComponent implements AfterViewInit {
 
     constructor(public navCtrl: NavController,
                 public menu: MenuController,
-                public storage: Storage
+                public storage: Storage,
+                private element: ElementRef
     ) {
         this.AR = new AyaxRest();
     }
 
     ngAfterViewInit() {
-        this.header = document.querySelector(".js-header");
+        this.header = this.element.nativeElement.querySelector(".js-header");
         this.burger = this.header.querySelector(".js-burger");
 
         try
