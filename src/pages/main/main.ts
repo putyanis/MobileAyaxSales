@@ -36,15 +36,10 @@ export class MainPage {
 
         // this.storage.clear();
 
-        this.storage.get('user').then((val) => {
-            if (val && (val.registrationSkipped || val.id))
+        this.storage.get('user').then((user) => {
+            if (user && (user.registrationSkipped || user.id))
                 this.navCtrl.push(SearchPage);
         });
-
-        // this.storage.get('loginState').then((val) => {
-        //     if (val)
-        //         this.state = val.state;
-        // });
     }
 
     ionViewDidLoad() {
@@ -56,9 +51,10 @@ export class MainPage {
     skipRegistration() {
         this.storage.set('user', {
             registrationSkipped : true
+        }).then(() => {
+            this.events.publish('user:skipRegistration', {});
+            this.navCtrl.push(SearchPage);
         });
-        this.events.publish('user:skipRegistration', {});
-        this.navCtrl.push(SearchPage);
     }
 
     processForm(event) {
@@ -136,8 +132,10 @@ export class MainPage {
                     return false;
                 }
 
-                this.storage.set('user', res.data);
-                this.navCtrl.push(SearchPage);
+                this.storage.set('user', res.data).then(() => {
+                    this.events.publish('user:loggedIn', {});
+                    this.navCtrl.push(SearchPage);
+                });
             });
         }
         catch (e) {}
@@ -167,8 +165,9 @@ export class MainPage {
                     return false;
                 }
 
-                this.storage.set('user', res.data);
-                this.navCtrl.push(SearchPage);
+                this.storage.set('user', res.data).then(() => {
+                    this.navCtrl.push(SearchPage);
+                });
             });
         }
         catch (e) {}
@@ -235,7 +234,7 @@ export class MainPage {
                 }
 
                 if (res.data.passwordChanged) {
-                    let successMessage = this.MSG.showSuccessMessage(MessText.getMessage(''), [
+                    let successMessage = this.MSG.showSuccessMessage('', [
                         MessText.getMessage('FORGET_SUCCESS')
                     ]);
 

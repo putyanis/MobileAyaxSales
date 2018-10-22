@@ -4,7 +4,7 @@ import {AyaxRest} from "../../classes/ayaxrest";
 import {ServicesPage} from "../services/services";
 import {AgentsPage} from "../agents/agents";
 import {NewBPage} from "../new-b/new-b";
-import {ObjectPage} from "../object/object";
+import {Storage} from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -17,7 +17,8 @@ export class SearchPage {
 
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
-                private element: ElementRef
+                private element: ElementRef,
+                private storage: Storage
     ) {
         this.AR = new AyaxRest();
     }

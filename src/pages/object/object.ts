@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {Slides, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Slides, IonicPage, NavController, NavParams, Events} from 'ionic-angular';
 import {AyaxRest} from "../../classes/ayaxrest";
 import {ObjectRequestPage} from "../object-request/object-request";
 
@@ -25,7 +25,7 @@ export class ObjectPage {
     private code: string;
     private category: string;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public events: Events) {
         this.code = navParams.get('code');
         this.AR = new AyaxRest();
     }
@@ -105,6 +105,7 @@ export class ObjectPage {
                 category: this.category
             }).then((res) => {
                 this.services.favorite = res.data.id;
+                this.fireUpdateService();
             });
         }
         else
@@ -113,6 +114,7 @@ export class ObjectPage {
                 id: this.services.favorite
             }).then((res) => {
                 this.services.favorite = 0;
+                this.fireUpdateService();
             });
         }
     }
@@ -125,6 +127,7 @@ export class ObjectPage {
                 category: this.category
             }).then((res) => {
                 this.services.compare = res.data.id;
+                this.fireUpdateService();
             });
         }
         else
@@ -133,6 +136,7 @@ export class ObjectPage {
                 id: this.services.compare
             }).then((res) => {
                 this.services.compare = 0;
+                this.fireUpdateService();
             });
         }
     }
@@ -142,5 +146,9 @@ export class ObjectPage {
             code: this.object.code,
             agent: this.object.agent
         });
+    }
+
+    fireUpdateService() {
+        this.events.publish('user:updateServices', {});
     }
 }

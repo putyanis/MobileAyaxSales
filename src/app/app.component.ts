@@ -26,8 +26,10 @@ export class MyApp {
     public displayName: string;
     public favoriteCount: number = 0;
     public compareCount: number = 0;
-    public showEnterButton: boolean = false;
+    public showEnterButton: boolean = true;
     public showToolbar: boolean = false;
+
+    private isAuthorized: boolean = false;
 
     private AR: AyaxRest;
 
@@ -43,11 +45,20 @@ export class MyApp {
         platform.ready().then(() => {
             statusBar.styleDefault();
             splashScreen.hide();
+
             this.initHeader();
             this.navigationEvents();
 
             this.events.subscribe('user:skipRegistration', (data) => {
                 this.showEnterButton = true;
+            });
+
+            this.events.subscribe('user:updateServices', (data) => {
+                this.updateUserServices();
+            });
+
+            this.events.subscribe('user:loggedIn', (data) => {
+                this.updateUserInfo();
             });
         });
     }
@@ -61,43 +72,72 @@ export class MyApp {
     initHeader() {
         this.header = this.element.nativeElement.querySelector(".js-header");
         this.burger = this.header.querySelector(".js-burger");
-
+        // this.storage.clear();
         try
         {
-            this.storage.get('user').then((val) => {
-                this.showEnterButton = val.registrationSkipped == true;
+            this.storage.get('user').then((user) => {
+                if (user === null)
+                {
+                    if (this.nav.getActive().name != 'MainPage')
+                    {
+                        this.storage.clear().then(() => {
+                            this.nav.goToRoot({});
+                        });
+                    }
 
-                if (val.avatar)
-                    this.avatar = val.avatar.src;
+                    return false;
+                }
 
-                this.displayName = val.displayName;
+                this.showEnterButton = !(user.hasOwnProperty('id') && parseInt(user.id) > 0);
+
+                this.AR.post('User', {
+                    type: 'check'
+                }).then((res) => {
+                    if (res.data.isAuthorized == false)
+                        this.showEnterButton = true;
+                });
+
+                if (user.avatar)
+                    this.avatar = user.avatar.src;
+
+                this.displayName = user.displayName;
             });
 
-            this.AR.get('UserServices').then((res) => {
-                this.favoriteCount = res.data.favorite;
-                this.compareCount = res.data.compare;
-            });
+            this.updateUserServices();
         }
         catch (e) {
 
         }
     }
 
+    updateUserServices() {
+        this.AR.get('UserServices').then((res) => {
+            this.favoriteCount = res.data.favorite;
+            this.compareCount = res.data.compare;
+        });
+    }
+
     loadMainPage() {
         if (this.nav.getActive().name != 'SearchPage')
+        {
             this.nav.push(SearchPage);
+            this.menu.close();
+        }
     }
 
     loadFavorites() {
         this.nav.push(FavoritePage);
+        this.menu.close();
     }
 
     loadCompare() {
         this.nav.push(ComparePage);
+        this.menu.close();
     }
 
     loadSettingsPage() {
         this.nav.push(SettingsPage);
+        this.menu.close();
     }
 
     loadLoginPage() {
@@ -105,7 +145,18 @@ export class MyApp {
             registrationSkipped : false
         });
         this.menu.close();
-        this.nav.push(MainPage);
+        this.nav.goToRoot({});
+        // this.nav.push(MainPage);
+    }
+
+    updateUserInfo() {
+        this.AR.post('User', {
+            type: 'check'
+        }).then((res) => {
+            this.storage.set('user', res.data).then(() => {
+                this.initHeader();
+            });
+        });
     }
 }
 

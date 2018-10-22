@@ -79,6 +79,7 @@
     height: 150px;
     background: url("../assets/imgs/b1.jpg") center center;
     background-size: cover;
+    margin-bottom: 66px;
 }
 
 .side-agent__shadow
@@ -93,7 +94,7 @@
 
 .side-agent__img
 {
-    position: absolute;
+    position: relative;
     left: 50%;
     margin-left: -100px;
     top: 30px;
@@ -101,6 +102,7 @@
     width: 200px;
     border: 15px solid #fff;
     border-radius: 2px;
+    margin-bottom: 32px;
 }
 
 .side-agent__image
@@ -113,10 +115,7 @@
 .side-agent__name
 {
     font-size: 18px;
-    position: absolute;
     color: #fff;
-    top: 192px;
-    left: 0;
     padding: 10px 16px;
     width: 100%;
     box-sizing: border-box;

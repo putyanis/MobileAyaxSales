@@ -1,18 +1,48 @@
-<!--
-  Generated template for the SettingsPage page.
+<ion-content>
+    <div class="inner-page main-page">
+        <div class="title">Настройки</div>
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
+        <form class="settings js-settings-form">
+            <div class="settings__set">
+                <div class="settings__label">Фамилия</div>
+                <div class="settings__input">
+                    <input type="text" name="lastName" value="{{lastName}}" class="settings__control" />
+                </div>
+            </div>
+            <div class="settings__set">
+                <div class="settings__label">Имя</div>
+                <div class="settings__input">
+                    <input type="text" name="firstName" value="{{firstName}}" class="settings__control" />
+                </div>
+            </div>
+            <div class="settings__set">
+                <div class="settings__label">Отчество</div>
+                <div class="settings__input">
+                    <input type="text" name="secondName" value="{{secondName}}" class="settings__control" />
+                </div>
+            </div>
+            <div class="settings__set">
+                <div class="settings__label">Email</div>
+                <div class="settings__input">
+                    <input type="text" name="email" value="{{email}}" class="settings__control" />
+                </div>
+            </div>
+            <div class="settings__set">
+                <div class="settings__label">Телефон</div>
+                <div class="settings__input">
+                    <input type="text" name="phone" value="{{phone}}" class="settings__control" />
+                </div>
+            </div>
+            <div class="settings__set">
+                <div class="settings__label">Новый пароль</div>
+                <div class="settings__input">
+                    <input type="password" name="newPass" value="" class="settings__control" autocomplete="off" />
+                </div>
+            </div>
+        </form>
 
-  <ion-navbar>
-    <ion-title>settings</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
+        <div class="submit-search">
+            <span class="submit-search__button" (click)="saveUser();">Сохранить</span>
+        </div>
+    </div>
 </ion-content>
