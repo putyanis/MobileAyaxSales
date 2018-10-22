@@ -1,0 +1,27 @@
+<ion-content>
+    <div class="inner-page main-page">
+        <div class="title title_smaller">Заявка на услугу</div>
+
+        <form class="ns-form js-service-request">
+            <div class="ns-field">
+                <div class="ns-title">Ваш email</div>
+                <input name="userEmail" type="email" class="ns-field__input">
+            </div>
+            <div class="ns-field">
+                <div class="ns-title">Ваше телефон</div>
+                <input name="userPhone" type="tel" class="ns-field__input">
+            </div>
+            <div class="ns-field">
+                <div class="ns-title">Ваше имя</div>
+                <input name="userName" type="text" class="ns-field__input">
+            </div>
+            <div class="ns-field">
+                <div class="ns-title">Сообщение</div>
+                <textarea name="userMessage" class="ns-field__input ns-field__input_text"></textarea>
+            </div>
+            <div class="ns-submit">
+                <span class="ns-submit__button" (click)="sendMessage()">Отправить заявку</span>
+            </div>
+        </form>
+    </div>
+</ion-content>

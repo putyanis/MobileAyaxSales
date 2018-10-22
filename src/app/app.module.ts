@@ -22,6 +22,7 @@ import {ReviewPage} from "../pages/review/review";
 import {SettingsPage} from "../pages/settings/settings";
 import {AgentFeedbackPage} from "../pages/agent-feedback/agent-feedback";
 import {ObjectRequestPage} from "../pages/object-request/object-request";
+import {ServiceRequestPage} from "../pages/service-request/service-request";
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import {ObjectRequestPage} from "../pages/object-request/object-request";
         SettingsPage,
         AgentFeedbackPage,
         ObjectRequestPage,
+        ServiceRequestPage,
     ],
     imports: [
         BrowserModule,
@@ -66,6 +68,7 @@ import {ObjectRequestPage} from "../pages/object-request/object-request";
         SettingsPage,
         AgentFeedbackPage,
         ObjectRequestPage,
+        ServiceRequestPage,
     ],
     providers: [
         StatusBar,

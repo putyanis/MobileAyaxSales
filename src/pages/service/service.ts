@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {AyaxRest} from "../../classes/ayaxrest";
+import {ServiceRequestPage} from "../service-request/service-request";
 
 @IonicPage()
 @Component({
@@ -12,9 +13,11 @@ export class ServicePage {
     public serviceTitle: string;
     public serviceHTML: string;
     public servicePrice: any;
+    private serviceType: string;
 
     constructor(public navCtrl: NavController, public navParams: NavParams) {
         this.AR = new AyaxRest();
+        this.serviceType = navParams.get('serviceType');
     }
 
     ionViewDidLoad() {
@@ -25,7 +28,10 @@ export class ServicePage {
         });
     }
 
-    openServiceForm(serviceName) {
-        console.log(serviceName);
+    openServiceForm() {
+        this.navCtrl.push(ServiceRequestPage, {
+            serviceName: this.serviceTitle,
+            serviceType: this.serviceType
+        });
     }
 }
