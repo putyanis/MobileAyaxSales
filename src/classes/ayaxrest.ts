@@ -13,8 +13,8 @@ export class AyaxRest {
 
     constructor() {
         this.axiosInstance = axios.create({
-            //baseURL : 'https://www.ayax.ru/api/v1/',
-            baseURL : 'http://www.ayax.local/api/v1/',
+            baseURL : 'https://www.ayax.ru/api/v1/',
+            //baseURL : 'http://www.ayax.local/api/v1/',
             timeout: 5000,
             auth: {
                 username: 'restapiuser',
