@@ -24,14 +24,14 @@
                 <div class="side-agent__name" *ngIf="displayName">{{displayName}}</div>
             </div>
             <div class="aside-list">
-                <a href="" class="aside-list__item" (click)="loadFavorites()">
+                <span class="aside-list__item" (click)="loadFavorites()">
                     <span class="mdi mdi-star-outline aside-list__icon"></span>Избранное
                     <span class="aside-list__unread">{{favoriteCount}}</span>
-                </a>
-                <a href="" class="aside-list__item" (click)="loadCompare()">
+                </span>
+                <span class="aside-list__item" (click)="loadCompare()">
                     <span class="mdi mdi-compare aside-list__icon"></span>Сравнение
                     <span class="aside-list__unread">{{compareCount}}</span>
-                </a>
+                </span>
                 <a *ngIf="showEnterButton == false" (click)="loadSettingsPage()" class="aside-list__item"><span class="mdi mdi-settings aside-list__icon"></span>Настройки</a>
 
                 <a *ngIf="showEnterButton == true" (click)="loadLoginPage()" class="aside-list__item"><span class="mdi mdi-login aside-list__icon"></span>Войти</a>

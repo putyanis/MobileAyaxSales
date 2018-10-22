@@ -1,18 +1,32 @@
-<!--
-  Generated template for the FavoritePage page.
+<ion-content>
+    <div class="inner-page main-page">
+        <div class="title title_smaller">Избранное</div>
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
+        <div *ngIf="agentObjectTypes && agentObjectTypes.length > 0">
 
-  <ion-navbar>
-    <ion-title>favorite</ion-title>
-  </ion-navbar>
+            <div class="categories">
+                <div class="categories-list categories-list_flat">
+                    <div class="cat-check cat-check_flat2" *ngFor="let category of agentObjectTypes">
+                        <input type="radio" name="cat" id="chAgent{{category}}">
+                        <label for="chAgent{{category}}" class="js-category-label" (click)="changeCategory(category)">{{showCategoryName(category)}}</label>
+                    </div>
+                </div>
+            </div>
 
-</ion-header>
+            <div class="objects" *ngIf="objects.length > 0">
+                <div class="object" *ngFor="let object of objects" (click)="loadObject(object.symCode)">
+                    <img src="{{object.photos[0].src}}" class="object__image"/>
+                    <div class="object__preview">
+                        <div class="object__name">{{object.name}}</div>
+                        <div class="object__price">{{object.priceText}}</div>
+                    </div>
+                    <span class="object__to-detail mdi mdi-chevron-right"></span>
+                </div>
+            </div>
+            <div class="submit-search" *ngIf="nextPage !== null">
+                <span class="submit-search__button submit-search__button_load" (click)="loadPage()">Загрузить еще</span>
+            </div>
 
-
-<ion-content padding>
-
+        </div>
+    </div>
 </ion-content>

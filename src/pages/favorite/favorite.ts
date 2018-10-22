@@ -1,25 +1,34 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the FavoritePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AyaxRest} from "../../classes/ayaxrest";
+import {Categories} from "../../classes/categories";
 
 @IonicPage()
 @Component({
-  selector: 'page-favorite',
-  templateUrl: 'favorite.html',
+    selector: 'page-favorite',
+    templateUrl: 'favorite.html',
 })
 export class FavoritePage {
+    private AR: AyaxRest;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+    private nextPage: number = 1;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad FavoritePage');
-  }
+    constructor(public navCtrl: NavController, public navParams: NavParams) {
+        this.AR = new AyaxRest();
+    }
+
+    ionViewDidLoad() {
+        this.AR.get('UserFavorite', {
+
+        }).then((res) => {
+            let codes = [];
+            for (let object of res.data)
+            {
+                codes.push(object.CODE);
+            }
+
+            console.log(codes);
+        });
+    }
 
 }
