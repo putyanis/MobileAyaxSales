@@ -1,18 +1,46 @@
-<!--
-  Generated template for the NewBPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>newB</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
+<ion-content>
+    <div class="inner-page main-page">
+        <div class="title">Заявка на поиск новостройки</div>
+        <form class="ns-form js-newb-request">
+            <div class="ns-field">
+                <div class="ns-title">Выберите район</div>
+                <div class="checkbox ns-checkbox" *ngFor="let d of district">
+                    <input type="checkbox" id="ns{{d.code}}" value="{{d.name}}" name="userDistrict">
+                    <label for="ns{{d.code}}">{{d.name}}</label>
+                </div>
+            </div>
+            <div class="ns-field">
+                <div class="ns-title">Количество комнат</div>
+                <div class="checkbox ns-checkbox" *ngFor="let r of rooms">
+                    <input type="checkbox" id="ns{{r.code}}" value="{{r.name}}" name="userRooms">
+                    <label for="ns{{r.code}}">{{r.name}}</label>
+                </div>
+            </div>
+            <div class="ns-field">
+                <div class="ns-title">Срок сдачи</div>
+                <div class="checkbox ns-checkbox" *ngFor="let pr of period">
+                    <input type="checkbox" id="ns{{pr.code}}" value="{{pr.name}}" name="userPeriod">
+                    <label for="ns{{pr.code}}">{{pr.name}}</label>
+                </div>
+            </div>
+            <div class="ns-field">
+                <div class="ns-title">Стоимость</div>
+                <div class="checkbox ns-checkbox" *ngFor="let pi of price">
+                    <input type="checkbox" id="ns{{pi.code}}" value="{{pi.name}}" name="userPrice">
+                    <label for="ns{{pi.code}}">{{pi.name}}</label>
+                </div>
+            </div>
+            <div class="ns-field">
+                <div class="ns-title">Ваше имя</div>
+                <input type="text" name="userName" class="ns-field__input">
+            </div>
+            <div class="ns-field">
+                <div class="ns-title">Ваш телефон</div>
+                <input type="text" name="userPhone" class="ns-field__input">
+            </div>
+            <div class="ns-submit">
+                <span class="ns-submit__button" (click)="sendMessage()">Отправить заявку</span>
+            </div>
+        </form>
+    </div>
 </ion-content>

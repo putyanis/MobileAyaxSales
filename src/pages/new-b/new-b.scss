@@ -1,3 +1,108 @@
 page-new-b {
-
+    .checkbox
+    {
+        position: relative;
+        color: #fff;
+        font-size: 13px;
+        line-height: 18px;
+    }
+    
+    .checkbox input
+    {
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+    }
+    
+    .checkbox label
+    {
+        position: relative;
+        padding-left: 24px;
+        display: block;
+        cursor: pointer;
+    }
+    
+    .checkbox label:after
+    {
+        content: '';
+        display: block;
+        background: url("../../assets/imgs/checkbox.png");
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        top: 1px;
+        left: 0;
+    }
+    
+    .checkbox input:checked + label:after
+    {
+        background-position: -16px 0;
+    }
+    
+    .ns-form {
+        margin: 0 16px;
+    }
+    
+    .ns-field {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+    }
+    
+    .ns-title {
+        width: 100%;
+        font-weight: bold;
+        margin-bottom: 16px;
+    }
+    
+    .ns-checkbox {
+        width: 50%;
+        color: #4b4b4b !important;
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+    
+    .ns-checkbox label:after {
+        background: url("../../assets/imgs/checkbox2.png") !important;
+    }
+    
+    .ns-checkbox input:checked + label::after {
+        background-position: -16px 0 !important;
+    }
+    
+    .ns-field__input {
+        display: block;
+        box-sizing: border-box;
+        padding: 8px 9px 10px;
+        width: 100%;
+        background: transparent;
+        border: 1px solid #b5b6b7;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+    
+    .ns-submit {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 24px;
+    }
+    
+    .ns-submit__button {
+        color: #fff;
+        text-align: center;
+        padding: 10px 36px;
+        border-radius: 4px;
+        display: block;
+        text-transform: uppercase;
+        background: #cc2206;
+        border-bottom: 2px solid #56160b;
+        font-size: 14px;
+        cursor: pointer;
+    }
 }
