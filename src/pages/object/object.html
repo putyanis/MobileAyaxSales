@@ -5,7 +5,9 @@
             <div class="object-detail__slider" *ngIf="photos.length > 0">
                 <ion-slides (ionSlideDidChange)="slideChanged()">
                     <ion-slide *ngFor="let photo of photos">
-                        <img src="{{photo.src}}" height="{{photo.width}}" width="{{photo.height}}" class="object-detail__image"/>
+                        <div class="object-detail__iw">
+                            <img src="{{photo.src}}" height="{{photo.width}}" width="{{photo.height}}" class="object-detail__image"/>
+                        </div>
                     </ion-slide>
                 </ion-slides>
                 <div class="object-detail__pager">
@@ -43,7 +45,9 @@
             <div class="title title_smaller">Похожие объекты</div>
             <div class="objects">
                 <div class="object" *ngFor="let object of similar" (click)="loadObject(object.symCode)">
-                    <img src="{{object.photos[0].src}}" class="object__image" />
+                    <div class="object__img">
+                        <img src="{{object.photos[0].src}}" class="object__image" />
+                    </div>
                     <div class="object__preview">
                         <div class="object__name">{{object.name}}</div>
                         <div class="object__price">{{object.priceText}}</div>

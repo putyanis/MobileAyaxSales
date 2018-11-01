@@ -19,7 +19,9 @@
 
             <div class="objects">
                 <div class="object" *ngFor="let object of objects" (click)="loadObject(object.symCode)">
-                    <img src="{{object.photos[0].src}}" class="object__image"/>
+                    <div class="object__img">
+                        <img src="{{object.photos[0].src}}" class="object__image"/>
+                    </div>
                     <div class="object__preview">
                         <div class="object__name">{{object.name}}</div>
                         <div class="object__price">{{object.priceText}}</div>
