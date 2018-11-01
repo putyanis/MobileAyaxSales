@@ -1,7 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, ElementRef} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {AyaxRest} from "../../classes/ayaxrest";
 import {Categories} from "../../classes/categories";
+import {ObjectPage} from "../object/object";
 
 @IonicPage()
 @Component({
@@ -10,25 +11,81 @@ import {Categories} from "../../classes/categories";
 })
 export class FavoritePage {
     private AR: AyaxRest;
-
     private nextPage: number = 1;
+    private category: string = null;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
+    public objects: any = [];
+    public userCategories: any = [];
+
+    constructor(public navCtrl: NavController, public navParams: NavParams, private element: ElementRef) {
         this.AR = new AyaxRest();
     }
 
     ionViewDidLoad() {
-        this.AR.get('UserFavorite', {
-
+        this.AR.get('UserServices', {
+            type: 'cat'
         }).then((res) => {
-            let codes = [];
-            for (let object of res.data)
-            {
-                codes.push(object.CODE);
-            }
+            this.userCategories = Object.keys(res.data.favorite);
 
-            console.log(codes);
+            if (this.userCategories.length == 0)
+                this.userCategories = null;
+            else
+                this.changeCategory(this.userCategories[0]);
         });
     }
 
+    public loadPage() {
+        this.AR.get('UserFavorite', {
+            filter: {
+                category: this.category
+            },
+            order: {
+                timestamp : 'desc'
+            },
+            paging: {
+                num: this.nextPage
+            },
+            select: [
+                'CODE'
+            ]
+        }).then((res) => {
+            let activeLabel = this.element.nativeElement.querySelector(".js-category-label[for='chUserService" + this.category + "']");
+            if (activeLabel) {
+                activeLabel.parentNode.querySelector("input").checked = true;
+            }
+
+            this.nextPage = res.data.pager.next;
+
+            let codes = [];
+            for (let object of res.data.rows) {
+                codes.push(object.CODE);
+            }
+
+            this.AR.get('EstateObject', {
+                type: this.category,
+                filter: {
+                    code: codes
+                }
+            }).then((res) => {
+                this.objects = this.objects.concat(res.data.rows);
+            });
+        });
+    }
+
+    public changeCategory(category: string) {
+        this.category = category;
+        this.nextPage = 1;
+        this.objects = [];
+        this.loadPage();
+    }
+
+    public showCategoryName(category) {
+        return Categories.getRu(category);
+    }
+
+    public loadObject(code) {
+        this.navCtrl.push(ObjectPage, {
+            code: code
+        });
+    }
 }

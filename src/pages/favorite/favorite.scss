@@ -1,3 +1,148 @@
 page-favorite {
-
+    .cat-check
+    {
+        position: relative;
+        width: calc(50% - 8px);
+        text-align: center;
+        margin-bottom: 16px;
+    }
+    
+    .cat-check input
+    {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        display: block;
+    }
+    
+    .cat-check label
+    {
+        display: block;
+        color: #e13d3c;
+        border: 2px solid #e13d3c;
+        padding: 6px 24px;
+        text-transform: uppercase;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+    
+    .cat-check input:checked + label
+    {
+        background: #e13d3c;
+        color: #fff;
+    }
+    
+    .categories
+    {
+        margin-bottom: 16px;
+    }
+    
+    .categories-list
+    {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin: 0 16px;
+    }
+    
+    .categories-list_flat
+    {
+        justify-content: center;
+    }
+    
+    .cat-check_flat2
+    {
+        width: auto;
+    }
+    
+    .cat-check_flat2 label
+    {
+        padding: 4px 8px;
+        margin: 0 4px;
+        font-size: 12px;
+    }
+    
+    .object
+    {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 0 16px 12px;
+        margin-bottom: 12px;
+        border-bottom: 1px solid #ccc;
+    }
+    
+    .object__image
+    {
+        display: block;
+        width: 120px;
+        height: auto;
+        margin-right: 16px;
+        flex-shrink: 0;
+    }
+    
+    .object__preview
+    {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .object__name
+    {
+        font-size: 16px;
+        margin-bottom: 6px;
+    }
+    
+    .object__location
+    {
+        font-size: 14px;
+        margin-bottom: 8px;
+        color: #696969;
+    }
+    
+    .object__price
+    {
+        font-size: 18px;
+        color: #c82020;
+    }
+    
+    .object__to-detail
+    {
+        font-size: 30px;
+    }
+    
+    .submit-search
+    {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 32px;
+    }
+    
+    .submit-search__button
+    {
+        color: #fff;
+        text-align: center;
+        padding: 10px 36px;
+        border-radius: 4px;
+        display: block;
+        background: #4BAF4F;
+        text-transform: uppercase;
+        font-size: 14px;
+    }
+    
+    .submit-search__button_load
+    {
+        margin-top: 16px;
+        background: #1370ab;
+        border-bottom: 2px solid #18435f;
+        font-size: 12px;
+    }
 }

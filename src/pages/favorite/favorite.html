@@ -2,18 +2,22 @@
     <div class="inner-page main-page">
         <div class="title title_smaller">Избранное</div>
 
-        <div *ngIf="agentObjectTypes && agentObjectTypes.length > 0">
-
+        <div *ngIf="userCategories.length > 0">
             <div class="categories">
                 <div class="categories-list categories-list_flat">
-                    <div class="cat-check cat-check_flat2" *ngFor="let category of agentObjectTypes">
-                        <input type="radio" name="cat" id="chAgent{{category}}">
-                        <label for="chAgent{{category}}" class="js-category-label" (click)="changeCategory(category)">{{showCategoryName(category)}}</label>
+                    <div class="cat-check cat-check_flat2" *ngFor="let category of userCategories">
+                        <input type="radio" name="cat" id="chUserService{{category}}" value="{{category}}">
+                        <label for="chUserService{{category}}" class="js-category-label" (click)="changeCategory(category)">
+                            {{showCategoryName(category)}}
+                        </label>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="objects" *ngIf="objects.length > 0">
+        <div *ngIf="objects && objects.length > 0">
+
+            <div class="objects">
                 <div class="object" *ngFor="let object of objects" (click)="loadObject(object.symCode)">
                     <img src="{{object.photos[0].src}}" class="object__image"/>
                     <div class="object__preview">
@@ -27,6 +31,12 @@
                 <span class="submit-search__button submit-search__button_load" (click)="loadPage()">Загрузить еще</span>
             </div>
 
+        </div>
+
+        <div *ngIf="objects === null">
+            <div class="empty-list">
+                Вы еще ничего не добавили в избранное
+            </div>
         </div>
     </div>
 </ion-content>
