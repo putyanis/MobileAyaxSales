@@ -19,5 +19,9 @@
                 <span class="agent__detail mdi mdi-chevron-right"></span>
             </div>
         </div>
+
+        <div class="submit-search" *ngIf="nextPage !== null">
+            <span class="submit-search__button submit-search__button_load" (click)="loadPage()">Загрузить еще</span>
+        </div>
     </div>
 </ion-content>

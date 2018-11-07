@@ -9,19 +9,29 @@ import {AgentPage} from "../agent/agent";
     templateUrl: 'agents.html',
 })
 export class AgentsPage {
-    public agents: any;
+    public agents: any = [];
 
     private AR: AyaxRest;
+    private nextPage: number = 1;
 
     constructor(public navCtrl: NavController, public navParams: NavParams) {
         this.AR = new AyaxRest();
     }
 
     ionViewDidLoad() {
+        this.loadPage();
+    }
+
+    public loadPage() {
         this.AR.get('SellAgent', {
-            filter: this.navParams.get('filter')
+            filter: this.navParams.get('filter'),
+            paging: {
+                size: 5,
+                num: this.nextPage
+            }
         }).then((res) => {
-            this.agents = res.data.rows;
+            this.agents = this.agents.concat(res.data.rows);
+            this.nextPage = res.data.pager.next;
         });
     }
 
