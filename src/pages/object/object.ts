@@ -79,16 +79,15 @@ export class ObjectPage {
 
     nextSlide() {
         this.slides.slideNext();
-        this.currentSlide = 1 + this.slides.getActiveIndex();
     }
 
     prevSlide() {
         this.slides.slidePrev();
-        this.currentSlide = 1 + this.slides.getActiveIndex();
     }
 
     slideChanged() {
-        this.currentSlide = 1 + this.slides.getActiveIndex();
+        let activeIndex = this.slides.getActiveIndex();
+        this.currentSlide = (activeIndex + 1) > this.photos.length ? this.photos.length : activeIndex + 1;
     }
 
     loadObject(code) {

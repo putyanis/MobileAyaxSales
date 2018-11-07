@@ -2,7 +2,7 @@
     <div class="inner-page main-page">
         <div class="title title_smaller">Сравнение</div>
 
-        <div *ngIf="userCategories.length > 0">
+        <div *ngIf="userCategories && userCategories.length > 0">
             <div class="categories">
                 <div class="categories-list categories-list_flat">
                     <div class="cat-check cat-check_flat2" *ngFor="let category of userCategories">
@@ -13,49 +13,62 @@
                     </div>
                 </div>
             </div>
+
+            <div class="object-detail__pager compare-pager">
+                <span class="mdi mdi-arrow-left" (click)="loadPrevSlide()"></span>
+                <i>{{currentIndex}}/{{objects.length}}</i>
+                <span class="mdi mdi-arrow-right" (click)="loadNextSlide()"></span>
+            </div>
         </div>
 
         <ion-slides (ionSlideDidChange)="slideChanged()">
-            <div *ngIf="objects && objects.length > 0">
-                <div class="object-detail__pager compare-pager">
-                    <span class="mdi mdi-arrow-left"></span>
-                    <i>1/3</i>
-                    <span class="mdi mdi-arrow-right"></span>
-                </div>
+            <ion-slide *ngFor="let object of objects">
+                <div *ngIf="object.properties">
 
-                <div class="object-detail">
-                    <div class="object-detail__slider">
-                        <img src="../../assets/imgs/object_b.jpg" class="object-detail__image"/>
-                        <div class="object-detail__pager object-detail__pager_compare">
-                            <span class="mdi mdi-arrow-left"></span>
-                            <i>фото: 1/8</i>
-                            <span class="mdi mdi-arrow-right"></span>
+                    <div class="object-detail">
+                        <div class="object-detail__slider" *ngIf="object.photos">
+                            <div class="object-detail__iw">
+                                <img src="{{object.currentPhoto.src}}"
+                                     height="{{object.currentPhoto.width}}"
+                                     width="{{object.currentPhoto.height}}"
+                                     class="object-detail__image"
+                                />
+                            </div>
+                            <div class="object-detail__pager object-detail__pager_compare">
+                                <span class="mdi mdi-arrow-left" (click)="showPrevPhoto()"></span>
+                                <i>фото: {{object.currentPhotoIndex + 1}}/{{object.photos.length}}</i>
+                                <span class="mdi mdi-arrow-right" (click)="showNextPhoto()"></span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div *ngIf="properties.length > 0">
-                        <div class="title title_character">Характеристики</div>
+                        <div *ngIf="object.properties.length > 0">
+                            <div class="title title_character">Характеристики</div>
 
-                        <div class="table">
-                            <div class="table__row" *ngFor="let property of properties">
-                                <div class="table__cell table__cell_name">{{property.name}}</div>
-                                <div class="table__cell table__cell_value">{{property.value}}</div>
+                            <div class="table">
+                                <div class="table__row" *ngFor="let property of object.properties">
+                                    <div class="table__cell table__cell_name">{{property.name}}</div>
+                                    <div class="table__cell table__cell_value">{{property.value}}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="object-buttons">
+                            <div class="object-buttons__button object-buttons__button_favorites" [ngClass]="{'selected' : object.favorite > 0}" (click)="addToFavorite()">
+                                <span class="mdi mdi-star-outline"></span>В избранное
+                            </div>
+                            <div class="object-buttons__button object-buttons__button_comparison" (click)="deleteCompare()">
+                                <span class="mdi mdi-delete"></span>Удалить
                             </div>
                         </div>
                     </div>
-
-                    <br/>
-
-                    <div class="object-buttons">
-                        <div class="object-buttons__button object-buttons__button_favorites">
-                            <span class="mdi mdi-star-outline"></span>В избранное
-                        </div>
-                        <div class="object-buttons__button object-buttons__button_comparison">
-                            <span class="mdi mdi-delete"></span>Удалить
-                        </div>
-                    </div>
                 </div>
-            </div>
+
+                <div *ngIf="!object">
+                    <ion-spinner></ion-spinner>
+                </div>
+            </ion-slide>
         </ion-slides>
 
         <div *ngIf="objects === null">
