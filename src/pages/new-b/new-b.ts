@@ -108,4 +108,8 @@ export class NewBPage {
 
         return message.join('; ');
     }
+
+    public checkIt(node) {
+        node.previousElementSibling.checked = !node.previousElementSibling.checked;
+    }
 }

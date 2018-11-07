@@ -26,9 +26,9 @@ export class SearchPage {
     ionViewDidLoad() {
         this.AR.get('DicSellDistrict').then((res) => {
             this.districts = res.data.rows;
+        }).then(() => {
+            this.initView();
         });
-
-        this.initView();
     }
 
     initView() {
@@ -59,5 +59,9 @@ export class SearchPage {
 
     goNewB() {
         this.navCtrl.push(NewBPage);
+    }
+
+    public checkIt(node) {
+        node.previousElementSibling.checked = !node.previousElementSibling.checked;
     }
 }

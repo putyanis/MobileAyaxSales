@@ -5,29 +5,29 @@
             <div class="ns-field">
                 <div class="ns-title">Выберите район</div>
                 <div class="checkbox ns-checkbox" *ngFor="let d of district">
-                    <input type="checkbox" id="ns{{d.code}}" value="{{d.name}}" name="userDistrict">
-                    <label for="ns{{d.code}}">{{d.name}}</label>
+                    <input type="checkbox" value="{{d.name}}" name="userDistrict">
+                    <label (click)="checkIt($event.target)">{{d.name}}</label>
                 </div>
             </div>
             <div class="ns-field">
                 <div class="ns-title">Количество комнат</div>
                 <div class="checkbox ns-checkbox" *ngFor="let r of rooms">
-                    <input type="checkbox" id="ns{{r.code}}" value="{{r.name}}" name="userRooms">
-                    <label for="ns{{r.code}}">{{r.name}}</label>
+                    <input type="checkbox" value="{{r.name}}" name="userRooms">
+                    <label (click)="checkIt($event.target)">{{r.name}}</label>
                 </div>
             </div>
             <div class="ns-field">
                 <div class="ns-title">Срок сдачи</div>
                 <div class="checkbox ns-checkbox" *ngFor="let pr of period">
-                    <input type="checkbox" id="ns{{pr.code}}" value="{{pr.name}}" name="userPeriod">
-                    <label for="ns{{pr.code}}">{{pr.name}}</label>
+                    <input type="checkbox" value="{{pr.name}}" name="userPeriod">
+                    <label (click)="checkIt($event.target)">{{pr.name}}</label>
                 </div>
             </div>
             <div class="ns-field">
                 <div class="ns-title">Стоимость</div>
                 <div class="checkbox ns-checkbox" *ngFor="let pi of price">
-                    <input type="checkbox" id="ns{{pi.code}}" value="{{pi.name}}" name="userPrice">
-                    <label for="ns{{pi.code}}">{{pi.name}}</label>
+                    <input type="checkbox" value="{{pi.name}}" name="userPrice">
+                    <label (click)="checkIt($event.target)">{{pi.name}}</label>
                 </div>
             </div>
             <div class="ns-field">
