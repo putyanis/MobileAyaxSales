@@ -1,5 +1,9 @@
 <ion-content>
     <div class="inner-page main-page">
+        <div class="page-loading" *ngIf="!objectLoaded">
+            <ion-spinner class="spinner-loader"></ion-spinner>
+        </div>
+
         <div class="title title_smaller title_object">{{objectName}}</div>
         <div class="object-detail">
             <div class="object-detail__slider" *ngIf="photos.length > 0">
@@ -39,6 +43,10 @@
             <div class="object-actions">
                 <div class="object-actions__action object-actions__action_order" (click)="loadObjectRequest()">Заявка на просмотр</div>
             </div>
+        </div>
+
+        <div class="page-loading" *ngIf="!similarLoaded">
+            <ion-spinner class="spinner-loader"></ion-spinner>
         </div>
 
         <div *ngIf="similar.length > 0">

@@ -22,6 +22,9 @@ export class ObjectPage {
         compare: 0
     };
     public similar: any = [];
+    public objectLoaded: boolean = false;
+    public similarLoaded: boolean = false;
+
     private code: string;
     private category: string;
 
@@ -31,6 +34,7 @@ export class ObjectPage {
     }
 
     ionViewDidLoad() {
+        this.objectLoaded = false;
         this.AR.get('EstateObject/' + this.code + '/?schema=1').then((res) => {
             this.object = res.data.object;
             this.objectName = res.data.object.name;
@@ -59,6 +63,9 @@ export class ObjectPage {
 
             let objectPrice = parseInt(res.data.object.price);
 
+            this.objectLoaded = true;
+            this.similarLoaded = false;
+
             this.AR.get('EstateObject', {
                 filter: {
                     'property_price<=': objectPrice + (objectPrice * 0.1),
@@ -73,6 +80,7 @@ export class ObjectPage {
                 type: res.data.object.iblockCode
             }).then((res) => {
                 this.similar = res.data.rows;
+                this.similarLoaded = true;
             });
         });
     }

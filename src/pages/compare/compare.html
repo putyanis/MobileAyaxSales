@@ -65,9 +65,10 @@
                     </div>
                 </div>
 
-                <div *ngIf="!object">
-                    <ion-spinner></ion-spinner>
+                <div class="page-loading" *ngIf="!object">
+                    <ion-spinner class="spinner-loader"></ion-spinner>
                 </div>
+
             </ion-slide>
         </ion-slides>
 

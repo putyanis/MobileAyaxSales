@@ -16,6 +16,8 @@ export class FavoritePage {
 
     public objects: any = [];
     public userCategories: any = [];
+    public pageLoaded = false;
+    public loading = false;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, private element: ElementRef) {
         this.AR = new AyaxRest();
@@ -34,7 +36,13 @@ export class FavoritePage {
         });
     }
 
-    public loadPage() {
+    public loadPage(initByButton: boolean = false) {
+        if (!initByButton)
+            this.pageLoaded = false;
+
+        if (initByButton)
+            this.loading = true;
+
         this.AR.get('UserFavorite', {
             filter: {
                 category: this.category
@@ -68,6 +76,8 @@ export class FavoritePage {
                 }
             }).then((res) => {
                 this.objects = this.objects.concat(res.data.rows);
+                this.pageLoaded = true;
+                this.loading = false;
             });
         });
     }

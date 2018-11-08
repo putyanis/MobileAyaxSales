@@ -10,6 +10,8 @@ import {AgentPage} from "../agent/agent";
 })
 export class AgentsPage {
     public agents: any = [];
+    public pageLoaded: boolean = false;
+    public loading: boolean = false;
 
     private AR: AyaxRest;
     private nextPage: number = 1;
@@ -23,6 +25,7 @@ export class AgentsPage {
     }
 
     public loadPage() {
+        this.loading = true;
         this.AR.get('SellAgent', {
             filter: this.navParams.get('filter'),
             paging: {
@@ -32,6 +35,8 @@ export class AgentsPage {
         }).then((res) => {
             this.agents = this.agents.concat(res.data.rows);
             this.nextPage = res.data.pager.next;
+            this.pageLoaded = true;
+            this.loading = false;
         });
     }
 

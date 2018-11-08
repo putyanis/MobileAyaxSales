@@ -134,3 +134,36 @@ $font-family-wp-base: "Proxima Nova";
 .title_smaller {
     font-size: 20px;
 }
+
+.spinner-button {
+    color: #fff;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    margin-left: -64px;
+    top: 25px;
+    display: none;
+}
+
+.spinner-button_show {
+    display: block;
+}
+
+.spinner-button circle {
+    stroke: #fff !important;
+}
+
+.page-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 24px 0
+}
+
+.spinner-loader {
+
+}
+
+.spinner-loader circle {
+    stroke: #c32b2b !important;
+}

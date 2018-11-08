@@ -1,7 +1,9 @@
 <ion-content>
     <div class="inner-page main-page">
         <div class="title">Лучшие агенты для Вас</div>
-
+        <div class="page-loading" *ngIf="!pageLoaded">
+            <ion-spinner class="spinner-loader"></ion-spinner>
+        </div>
         <div class="agents">
             <div class="agent" *ngFor="let agent of agents" data-id="{{agent.id}}" (click)="openAgentPage(agent.login)">
                 <div class="agent__image">
@@ -21,6 +23,7 @@
         </div>
 
         <div class="submit-search" *ngIf="nextPage !== null">
+            <ion-spinner class="spinner-button" [ngClass]="{'spinner-button_show' : loading}"></ion-spinner>
             <span class="submit-search__button submit-search__button_load" (click)="loadPage()">Загрузить еще</span>
         </div>
     </div>

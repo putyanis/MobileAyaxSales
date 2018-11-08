@@ -54,7 +54,7 @@ export class AyaxRest {
 
     private buildQuery(path: string, params: object = {}) {
         const base = [
-            'filter', 'select', 'order', 'paging'
+            'filter', 'order', 'paging'
         ];
         let query = [];
         for (let groupName in params ) {

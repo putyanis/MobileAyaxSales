@@ -46,6 +46,7 @@ export class ComparePage {
     public changeCategory(category: string) {
         this.category = category;
         this.objects = [];
+        this.codes = [];
         this.loadPage();
     }
 

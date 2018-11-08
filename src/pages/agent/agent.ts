@@ -15,6 +15,10 @@ export class AgentPage {
     public agent: any;
     public agentObjectTypes : any;
     public objects: any;
+    public agentLoaded: boolean = false;
+    public objectsLoaded: boolean = false;
+    public loading:boolean = false;
+
     private categoryNames: any;
     private nextPage: number = 1;
     private category: string = null;
@@ -27,6 +31,7 @@ export class AgentPage {
     }
 
     ionViewDidLoad() {
+        this.agentLoaded = false;
         this.AR.get('SellAgent/' + this.navParams.get('agentEmail'), {
             filter: this.navParams.get('filter')
         }).then((res) => {
@@ -40,7 +45,10 @@ export class AgentPage {
             this.filter.agent = this.agent.id;
             delete this.filter.district;
 
-            this.changeCategory(this.agentObjectTypes[0]);
+            this.agentLoaded = true;
+
+            if (this.agentObjectTypes[0])
+                this.changeCategory(this.agentObjectTypes[0]);
         });
     }
 
@@ -64,12 +72,16 @@ export class AgentPage {
         this.loadPage();
     }
 
-    public loadPage() {
+    public loadPage(initByButton: boolean = false) {
+        if (!initByButton)
+            this.objectsLoaded = false;
+
+        this.loading = true;
         this.AR.get('EstateObject', {
             type: this.category,
             filter: this.filter,
             paging : {
-                num : this.nextPage
+                num : this.nextPage,
             }
         }).then((res) => {
             this.objects = this.objects.concat(res.data.rows);
@@ -80,6 +92,9 @@ export class AgentPage {
             }
 
             this.nextPage = res.data.pager.next;
+
+            this.objectsLoaded = true;
+            this.loading = false;
         });
     }
 

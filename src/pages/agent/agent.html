@@ -1,5 +1,9 @@
 <ion-content>
     <div class="inner-page main-page">
+        <div class="page-loading" *ngIf="!agentLoaded">
+            <ion-spinner class="spinner-loader"></ion-spinner>
+        </div>
+
         <div *ngIf="agent">
             <div class="title">{{agent.displayname}}</div>
 
@@ -40,6 +44,10 @@
                 </div>
             </div>
 
+            <div class="page-loading" *ngIf="!objectsLoaded">
+                <ion-spinner class="spinner-loader"></ion-spinner>
+            </div>
+
             <div class="objects" *ngIf="objects.length > 0">
                 <div class="object" *ngFor="let object of objects" (click)="loadObject(object.symCode)">
                     <div class="object__img">
@@ -53,10 +61,12 @@
                 </div>
             </div>
             <div class="submit-search" *ngIf="nextPage !== null">
-                <span class="submit-search__button submit-search__button_load" (click)="loadPage()">Загрузить еще</span>
+                <ion-spinner class="spinner-button" [ngClass]="{'spinner-button_show' : loading}"></ion-spinner>
+                <span class="submit-search__button submit-search__button_load" (click)="loadPage(true)">Загрузить еще</span>
             </div>
 
         </div>
+
         <div class="no-result">
             <div class="title title_no-result">Не нашли подходящий вариант?</div>
             <span class="no-result__button" (click)="loadFeedbackPage()"><span class="mdi mdi-message-draw no-result__icon"></span>Обратиться к агенту</span>
