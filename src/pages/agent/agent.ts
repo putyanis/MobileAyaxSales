@@ -4,6 +4,7 @@ import {AyaxRest} from "../../classes/ayaxrest";
 import {ReviewPage} from "../review/review";
 import {AgentFeedbackPage} from "../agent-feedback/agent-feedback";
 import {ObjectPage} from "../object/object";
+import {Storage} from "@ionic/storage";
 
 @IonicPage()
 @Component({
@@ -26,29 +27,37 @@ export class AgentPage {
 
     private AR: AyaxRest;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, private element: ElementRef) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, private element: ElementRef, private storage: Storage) {
         this.AR = new AyaxRest();
+    }
+
+    goBack() {
+        this.navCtrl.pop();
     }
 
     ionViewDidLoad() {
         this.agentLoaded = false;
-        this.AR.get('SellAgent/' + this.navParams.get('agentEmail'), {
-            filter: this.navParams.get('filter')
-        }).then((res) => {
-            this.agent = res.data.rows[0];
-            this.categoryNames = res.data.categories;
-            this.agentObjectTypes = Object.keys(this.agent.objectCount);
 
-            //prepare object's filter
-            this.filter = this.navParams.get('filter');
-            this.filter.sellDistrict = this.filter.district;
-            this.filter.agent = this.agent.id;
-            delete this.filter.district;
+        this.storage.get('agentsFilter').then((filter) => {
 
-            this.agentLoaded = true;
+            this.AR.get('SellAgent/' + this.navParams.get('agentEmail'), {
+                filter: filter
+            }).then((res) => {
+                this.agent = res.data.rows[0];
+                this.categoryNames = res.data.categories;
+                this.agentObjectTypes = Object.keys(this.agent.objectCount);
 
-            if (this.agentObjectTypes[0])
-                this.changeCategory(this.agentObjectTypes[0]);
+                //prepare object's filter
+                this.filter = filter;
+                this.filter.sellDistrict = this.filter.district;
+                this.filter.agent = this.agent.id;
+                delete this.filter.district;
+
+                this.agentLoaded = true;
+
+                if (this.agentObjectTypes[0])
+                    this.changeCategory(this.agentObjectTypes[0]);
+            });
         });
     }
 
