@@ -5,6 +5,7 @@ import {ServicesPage} from "../services/services";
 import {AgentsPage} from "../agents/agents";
 import {NewBPage} from "../new-b/new-b";
 import {Storage} from '@ionic/storage';
+import {ReviewPage} from "../review/review";
 
 @IonicPage()
 @Component({
@@ -35,6 +36,9 @@ export class SearchPage {
     ionViewDidLoad() {
         this.AR.get('DicSellDistrict').then((res) => {
             this.districts = res.data.rows;
+        });
+        this.navCtrl.push(ReviewPage, {
+            id: 61
         });
     }
 

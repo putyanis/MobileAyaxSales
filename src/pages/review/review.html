@@ -13,7 +13,8 @@
         </div>
 
         <div class="submit-search" *ngIf="nextPage !== null">
-            <span class="submit-search__button submit-search__button_load" (click)="loadPage()">Читать еще</span>
+            <ion-spinner class="spinner-button" [ngClass]="{'spinner-button_show' : loading}"></ion-spinner>
+            <span class="submit-search__button submit-search__button_load" (click)="loadPage(true)">Загрузить еще</span>
         </div>
     </div>
 </ion-content>

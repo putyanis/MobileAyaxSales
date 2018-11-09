@@ -18,6 +18,7 @@ export class ReviewPage {
     public agentID: number;
     public reviews: Array<AgentReview> = [];
     public agent: any;
+    public loading: boolean = false;
     private AR: AyaxRest;
     private nextPage: number = 1;
 
@@ -30,7 +31,10 @@ export class ReviewPage {
         this.loadPage();
     }
 
-    loadPage() {
+    loadPage(iniByButton: boolean = false) {
+        if (iniByButton)
+            this.loading = true;
+
         this.AR.get('Review', {
             filter : {
                 property_agent : this.agentID
@@ -42,6 +46,7 @@ export class ReviewPage {
             this.reviews = this.reviews.concat(res.data.rows);
             this.agent = res.data.agents[this.agentID];
             this.nextPage = res.data.pager.next;
+            this.loading = false;
         });
     }
 }
