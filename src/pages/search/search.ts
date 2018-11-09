@@ -14,6 +14,15 @@ import {Storage} from '@ionic/storage';
 export class SearchPage {
     public districts : any;
     private AR: AyaxRest;
+    public ipoteka = {
+        service : 'ipoteka'
+    };
+    public yurist = {
+        service : 'yurist'
+    };
+    public otsenka = {
+        service : 'otsenka'
+    };
 
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
@@ -26,22 +35,13 @@ export class SearchPage {
     ionViewDidLoad() {
         this.AR.get('DicSellDistrict').then((res) => {
             this.districts = res.data.rows;
-        }).then(() => {
-            this.initView();
         });
     }
 
-    initView() {
-        let serviceButtons = this.element.nativeElement.querySelectorAll(".js-service");
-        if (serviceButtons) {
-            [].forEach.call(serviceButtons, (btn) => {
-                btn.addEventListener("click", (event) => {
-                    this.navCtrl.push(ServicesPage, {
-                        service: btn.dataset.service
-                    });
-                });
-            });
-        }
+    goServicePage(serviceName) {
+        this.navCtrl.push(ServicesPage, {
+            service: serviceName
+        });
     }
 
     startSearch() {

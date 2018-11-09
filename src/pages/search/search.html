@@ -79,9 +79,9 @@
         <div class="title">Наши услуги</div>
 
         <div class="service-buttons">
-            <span data-service="ipoteka" class="service-buttons__button service-buttons__button_ipoteka js-service">Сопровождение ипотеки</span>
-            <span data-service="yurist" class="service-buttons__button service-buttons__button_yurist js-service">Юридические услуги</span>
-            <span data-service="otsenka" class="service-buttons__button service-buttons__button_otsenka js-service">Оценка</span>
+            <span (click)="goServicePage('ipoteka')" class="service-buttons__button service-buttons__button_ipoteka js-service">Сопровождение ипотеки</span>
+            <span (click)="goServicePage('yurist')" class="service-buttons__button service-buttons__button_yurist js-service">Юридические услуги</span>
+            <span (click)="goServicePage('otsenka')" class="service-buttons__button service-buttons__button_otsenka js-service">Оценка</span>
         </div>
 
     </div>

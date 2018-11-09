@@ -76,7 +76,7 @@ export class MainPage {
         catch (e) {}
     }
 
-    showState(stateID: string, stateData: object = {}) {
+    showState(stateID: string = "login", stateData: object = {}) {
         let states = this.loginForm.querySelectorAll("form[class*='state'");
         states.forEach((state) => {
             state.style.display = state.classList.contains("js-" + stateID + "-state") ? "block" : "none";
