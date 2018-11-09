@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {AyaxRest} from "../../classes/ayaxrest";
 import {AgentPage} from "../agent/agent";
+import {Storage} from "@ionic/storage";
+import {SearchPage} from "../search/search";
 
 @IonicPage()
 @Component({
@@ -15,34 +17,54 @@ export class AgentsPage {
 
     private AR: AyaxRest;
     private nextPage: number = 1;
+    private filter: any;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
         this.AR = new AyaxRest();
+
     }
 
     ionViewDidLoad() {
-        this.loadPage();
+        this.storage.get('agentsFilter').then((filter) => {
+            if (filter === null)
+                return this.nullPage();
+
+            this.filter = filter;
+            this.loadPage();
+        });
     }
 
     public loadPage() {
         this.loading = true;
         this.AR.get('SellAgent', {
-            filter: this.navParams.get('filter'),
+            filter: this.filter,
             paging: {
                 size: 5,
                 num: this.nextPage
             }
         }).then((res) => {
-            this.agents = this.agents.concat(res.data.rows);
-            this.nextPage = res.data.pager.next;
-            this.pageLoaded = true;
-            this.loading = false;
+            if (res.data.rows && res.data.rows.length > 0) {
+                this.agents = this.agents.concat(res.data.rows);
+                this.nextPage = res.data.pager.next;
+                this.pageLoaded = true;
+                this.loading = false;
+            }
+            else {
+                return this.nullPage();
+            }
         });
+    }
+
+    nullPage() {
+        this.agents = null;
+        this.pageLoaded = true;
+        this.nextPage = null;
+        return false;
     }
 
     openAgentPage(agentEmail) {
         this.navCtrl.push(AgentPage, {
-            filter: this.navParams.get('filter'),
+            filter: this.filter,
             agentEmail: agentEmail.replace('@ayax.ru', '')
         });
     }
@@ -59,4 +81,9 @@ export class AgentsPage {
         }
         return sum;
     }
+
+    returnToSearch() {
+        this.navCtrl.push(SearchPage);
+    }
+
 }

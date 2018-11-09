@@ -49,12 +49,14 @@ export class SearchPage {
         let form: HTMLFormElement = this.element.nativeElement.querySelector(".js-search-form");
         let formData = new FormData(form);
 
-        this.navCtrl.push(AgentsPage, {
-            filter: {
-                contract: formData.get('contract'),
-                category: formData.getAll('category[]'),
-                district: formData.getAll('district[]')
-            }
+        let filter = {
+            contract: formData.get('contract'),
+            category: formData.getAll('category[]'),
+            district: formData.getAll('district[]')
+        };
+
+        this.storage.set('agentsFilter', filter).then(() => {
+            this.navCtrl.push(AgentsPage);
         });
     }
 
