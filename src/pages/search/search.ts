@@ -37,9 +37,6 @@ export class SearchPage {
         this.AR.get('DicSellDistrict').then((res) => {
             this.districts = res.data.rows;
         });
-        this.navCtrl.push(ReviewPage, {
-            id: 61
-        });
     }
 
     goServicePage(serviceName) {
