@@ -27,7 +27,7 @@ export class MyApp {
     public favoriteCount: number = 0;
     public compareCount: number = 0;
     public showEnterButton: boolean = true;
-    public showToolbar: boolean = false;
+    public showToolbar: boolean = true;
 
     private isAuthorized: boolean = false;
 
