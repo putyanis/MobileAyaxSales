@@ -1,8 +1,8 @@
 {
   "name": "AyaxMobileSales",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "author": "AYAX-Rielt",
+  "homepage": "https://www.ayax.ru/",
   "private": true,
   "scripts": {
     "start": "ionic-app-scripts serve",
@@ -46,7 +46,7 @@
     "@ionic/cli-plugin-proxy": "1.5.8",
     "typescript": "~2.6.2"
   },
-  "description": "An Ionic project",
+  "description": "",
   "cordova": {
     "plugins": {
       "cordova-sqlite-storage": {},
