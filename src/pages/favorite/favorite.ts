@@ -30,7 +30,10 @@ export class FavoritePage {
             this.userCategories = Object.keys(res.data.favorite);
 
             if (this.userCategories.length == 0)
+            {
                 this.userCategories = null;
+                this.objects = null;
+            }
             else
                 this.changeCategory(this.userCategories[0]);
         });
