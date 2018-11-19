@@ -2,7 +2,7 @@
     <div class="inner-page main-page">
         <div class="title title_smaller">Избранное</div>
 
-        <div *ngIf="userCategories.length > 0">
+        <div *ngIf="userCategories && userCategories.length > 0">
             <div class="categories">
                 <div class="categories-list categories-list_flat">
                     <div class="cat-check cat-check_flat2" *ngFor="let category of userCategories">

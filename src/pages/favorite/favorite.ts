@@ -33,6 +33,8 @@ export class FavoritePage {
             {
                 this.userCategories = null;
                 this.objects = null;
+                this.pageLoaded = true;
+                this.loading = false;
             }
             else
                 this.changeCategory(this.userCategories[0]);
