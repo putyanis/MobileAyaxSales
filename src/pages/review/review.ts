@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
-import {AyaxRest, AyaxRestParams} from "../../classes/ayaxrest";
+import {AyaxRest} from "../../classes/ayaxrest";
 
 interface AgentReview {
     author: string,

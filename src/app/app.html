@@ -1,4 +1,4 @@
-<div [ngClass]="showToolbar == false ? 'hidden' : ''">
+<div [ngClass]="showToolBar() ? '' : 'hidden'">
     <ion-toolbar #ayaxHeader>
         <div class="header js-header">
             <div class="burger js-burger" (click)="menu.toggle()">
@@ -16,12 +16,12 @@
 
     <ion-menu [content]="ayaxHeader" side="left" type="overlay">
         <div class="a-menu">
-            <div class="side-agent">
+            <div class="side-agent" *ngIf="user">
                 <span class="side-agent__shadow"></span>
-                <div class="side-agent__img" *ngIf="avatar">
-                    <img src="{{avatar}}" class="side-agent__image"/>
+                <div class="side-agent__img" *ngIf="user.avatar.src">
+                    <img src="{{user.avatar.src}}" class="side-agent__image"/>
                 </div>
-                <div class="side-agent__name" *ngIf="displayName">{{displayName}}</div>
+                <div class="side-agent__name" *ngIf="user.displayName">{{user.displayName}}</div>
             </div>
             <div class="aside-list">
                 <span class="aside-list__item" (click)="loadFavorites()">

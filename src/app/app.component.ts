@@ -1,5 +1,5 @@
-import {Component, ElementRef, ViewChild } from '@angular/core';
-import {MenuController, NavController, Platform, Nav, Events} from 'ionic-angular';
+import {Component, ViewChild } from '@angular/core';
+import {MenuController, Platform, Nav, Events} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 
@@ -19,24 +19,18 @@ export class MyApp {
 
     rootPage: any = MainPage;
 
-    private header : HTMLElement;
-    private burger : HTMLElement;
+    public user: any = null;
 
-    public avatar: string;
-    public displayName: string;
     public favoriteCount: number = 0;
     public compareCount: number = 0;
     public showEnterButton: boolean = true;
     public showToolbar: boolean = true;
-
-    private isAuthorized: boolean = false;
 
     private AR: AyaxRest;
 
     constructor(platform: Platform,
                 statusBar: StatusBar,
                 splashScreen: SplashScreen,
-                private element: ElementRef,
                 public storage: Storage,
                 public menu: MenuController,
                 public events: Events
@@ -45,38 +39,42 @@ export class MyApp {
         platform.ready().then(() => {
             statusBar.styleDefault();
             splashScreen.hide();
-
-            this.initHeader();
-            this.navigationEvents();
-
-            this.events.subscribe('user:skipRegistration', (data) => {
-                this.showEnterButton = true;
-            });
-
-            this.events.subscribe('user:updateServices', (data) => {
-                this.updateUserServices();
-            });
-
-            this.events.subscribe('user:loggedIn', (data) => {
-                this.updateUserInfo();
-            });
+            // this.storage.clear();
+            this.subscribeEvents();
+            this.updateUserInfo();
         });
     }
 
-    navigationEvents() {
+    subscribeEvents() {
         this.nav.viewDidEnter.subscribe((data) => {
             this.showToolbar = this.nav.getActive().name != 'MainPage';
         });
+
+        this.events.subscribe('user:skipRegistration', () => {
+            this.skipRegistration();
+        });
+
+        this.events.subscribe('user:updateServices', () => {
+            this.updateUserServices();
+        });
+
+        this.events.subscribe('user:updateUserInfo', (data) => {
+            this.updateUserInfo(data);
+        });
     }
 
-    initHeader() {
-        this.header = this.element.nativeElement.querySelector(".js-header");
-        this.burger = this.header.querySelector(".js-burger");
-        // this.storage.clear();
-        try
-        {
-            this.storage.get('user').then((user) => {
-                if (user === null)
+    updateUserInfo(data = {openSearchPage: true}) {
+        this.storage.get('user').then((user) => {
+            if (user !== null && user.registrationSkipped == true)
+            {
+                this.loadSearchPage();
+                return false;
+            }
+
+            this.AR.post('User', {
+                type: 'check'
+            }).then((res) => {
+                if (res.data.isAuthorized === false)
                 {
                     if (this.nav.getActive().name != 'MainPage')
                     {
@@ -88,26 +86,16 @@ export class MyApp {
                     return false;
                 }
 
-                this.showEnterButton = !(user.hasOwnProperty('id') && parseInt(user.id) > 0);
+                this.storage.set('user', res.data).then(() => {
+                    this.user = res.data;
+                    this.showEnterButton = !(this.user.hasOwnProperty('id') && parseInt(this.user.id) > 0);
+                    this.updateUserServices();
 
-                this.AR.post('User', {
-                    type: 'check'
-                }).then((res) => {
-                    if (res.data.isAuthorized == false)
-                        this.showEnterButton = true;
+                    if (data.openSearchPage == true)
+                        this.loadSearchPage();
                 });
-
-                if (user.avatar)
-                    this.avatar = user.avatar.src;
-
-                this.displayName = user.displayName;
             });
-
-            this.updateUserServices();
-        }
-        catch (e) {
-
-        }
+        });
     }
 
     updateUserServices() {
@@ -120,7 +108,7 @@ export class MyApp {
     loadMainPage() {
         if (this.nav.getActive().name != 'SearchPage')
         {
-            this.nav.push(SearchPage);
+            this.loadSearchPage();
             this.menu.close();
         }
     }
@@ -144,19 +132,25 @@ export class MyApp {
         this.storage.set('user', {
             registrationSkipped : false
         });
+        this.showToolbar = false;
         this.menu.close();
         this.nav.goToRoot({});
-        // this.nav.push(MainPage);
     }
 
-    updateUserInfo() {
-        this.AR.post('User', {
-            type: 'check'
-        }).then((res) => {
-            this.storage.set('user', res.data).then(() => {
-                this.initHeader();
-            });
+    loadSearchPage() {
+        this.nav.push(SearchPage);
+    }
+
+    skipRegistration() {
+        this.showEnterButton = true;
+        this.storage.set('user', {
+            registrationSkipped: true
+        }).then(() => {
+            this.loadSearchPage();
         });
     }
-}
 
+    public showToolBar() {
+        return this.showToolbar == true;
+    }
+}

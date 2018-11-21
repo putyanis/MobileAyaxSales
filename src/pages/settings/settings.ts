@@ -73,7 +73,9 @@ export class SettingsPage {
                 this.MSG.showSuccessMessage('', [
                     MessText.getMessage('USER_UPDATE_SUCCESS')
                 ]);
-                this.events.publish('user:loggedIn');
+                this.events.publish('user:updateUserInfo', {
+                    openSearchPage: false
+                });
             }
             else
                 this.MSG.showErrorMessage(MessText.getMessage('USER_UPDATE_ERROR_TITLE'), [

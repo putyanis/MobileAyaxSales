@@ -23,7 +23,7 @@ export class NewBPage {
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
                 private element: ElementRef,
-                private alertCtrl: AlertController,
+                public alertCtrl: AlertController,
                 public loadingCtrl: LoadingController,
     ) {
         this.AR = new AyaxRest();
@@ -110,6 +110,6 @@ export class NewBPage {
     }
 
     public checkIt(node) {
-        node.previousElementSibling.checked = !node.previousElementSibling.checked;
+        node.previousEспсlementSibling.checked = !node.previousElementSibling.checked;
     }
 }

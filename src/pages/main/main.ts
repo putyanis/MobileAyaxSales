@@ -33,13 +33,6 @@ export class MainPage {
     ) {
         this.AR = new AyaxRest();
         this.MSG  = new Message(this.alertCtrl);
-
-        // this.storage.clear();
-
-        this.storage.get('user').then((user) => {
-            if (user && (user.registrationSkipped || user.id))
-                this.navCtrl.push(SearchPage);
-        });
     }
 
     ionViewDidLoad() {
@@ -52,8 +45,7 @@ export class MainPage {
         this.storage.set('user', {
             registrationSkipped : true
         }).then(() => {
-            this.events.publish('user:skipRegistration', {});
-            this.navCtrl.push(SearchPage);
+            this.events.publish('user:skipRegistration');
         });
     }
 
@@ -132,10 +124,7 @@ export class MainPage {
                     return false;
                 }
 
-                this.storage.set('user', res.data).then(() => {
-                    this.events.publish('user:loggedIn', {});
-                    this.navCtrl.push(SearchPage);
-                });
+                this.events.publish('user:updateUserInfo');
             });
         }
         catch (e) {}
@@ -165,9 +154,7 @@ export class MainPage {
                     return false;
                 }
 
-                this.storage.set('user', res.data).then(() => {
-                    this.navCtrl.push(SearchPage);
-                });
+                this.events.publish('user:updateUserInfo');
             });
         }
         catch (e) {}

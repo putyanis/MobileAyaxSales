@@ -5,7 +5,6 @@ import {ServicesPage} from "../services/services";
 import {AgentsPage} from "../agents/agents";
 import {NewBPage} from "../new-b/new-b";
 import {Storage} from '@ionic/storage';
-import {ReviewPage} from "../review/review";
 
 @IonicPage()
 @Component({
