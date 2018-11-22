@@ -15,7 +15,7 @@ export class AyaxRest {
         this.axiosInstance = axios.create({
             baseURL : 'https://www.ayax.ru/api/v1/',
             // baseURL : 'http://www.ayax.local/api/v1/',
-            timeout: 5000,
+            timeout: 10000,
             auth: {
                 username: 'restapiuser',
                 password: 'tHt@F(*YYsjR7bV5U80c~x}72k-sFw'
