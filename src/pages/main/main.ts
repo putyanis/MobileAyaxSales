@@ -7,7 +7,6 @@ import {Message} from '../../classes/message';
 import {MessText} from "../../classes/messtext";
 import {StrTools} from "../../classes/strtools";
 
-import {SearchPage} from "../search/search";
 import {Storage} from '@ionic/storage';
 
 @IonicPage()
