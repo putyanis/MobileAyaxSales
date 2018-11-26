@@ -20,6 +20,8 @@ export class NewBPage {
     private AR: AyaxRest;
     private MSG: Message;
 
+    public loading: boolean = false;
+
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
                 private element: ElementRef,
@@ -44,6 +46,7 @@ export class NewBPage {
         let loader = new AyaxLoader(this.loadingCtrl);
 
         loader.show();
+        this.loading = true;
 
         this.AR.post('NewBRequest', {
             name: this.form.userName.value,
@@ -51,6 +54,7 @@ export class NewBPage {
             message: this.compileMessage()
         }).then((res) => {
             loader.hide();
+            this.loading = false;
             if (res.data.status == 'fail')
                 this.MSG.showErrorMessage(
                     MessText.getMessage('REQUEST_ERROR_TITLE'),

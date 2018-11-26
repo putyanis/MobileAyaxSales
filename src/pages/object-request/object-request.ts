@@ -17,6 +17,8 @@ export class ObjectRequestPage {
     private readonly MSG: any;
     private AR: AyaxRest;
 
+    public loading: boolean = false;
+
     constructor(public navCtrl: NavController, public navParams: NavParams, private element: ElementRef, public alertCtrl: AlertController) {
         this.objectCode = navParams.get('code');
         this.agentID = navParams.get('agent');
@@ -30,6 +32,7 @@ export class ObjectRequestPage {
     }
 
     sendMessage() {
+        this.loading = true;
         this.AR.post('EstateObjectRequest', {
             agent: this.agentID,
             code: this.objectCode,
@@ -38,6 +41,8 @@ export class ObjectRequestPage {
             phone: this.form.userPhone.value,
             message: this.form.userMessage.value,
         }).then((res) => {
+            this.loading = false;
+
             if (res.data.status == 'fail')
                 this.MSG.showErrorMessage(
                     MessText.getMessage('REQUEST_ERROR_TITLE'),

@@ -22,6 +22,8 @@ export class SettingsPage {
     public email: string = '';
     public phone: string = '';
 
+    public loading: boolean = false;
+
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
@@ -67,7 +69,10 @@ export class SettingsPage {
             password: this.form.newPass.value
         };
 
+        this.loading = true;
+
         this.AR.put('User', body).then((res) => {
+            this.loading = false;
             if (res.data.update == true)
             {
                 this.MSG.showSuccessMessage('', [

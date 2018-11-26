@@ -20,6 +20,7 @@
                 <textarea name="userMessage" class="ns-field__input ns-field__input_text"></textarea>
             </div>
             <div class="ns-submit">
+                <ion-spinner class="spinner-button" [ngClass]="{'spinner-button_show' : loading}"></ion-spinner>
                 <span class="ns-submit__button" (click)="sendMessage()">Отправить заявку</span>
             </div>
         </form>

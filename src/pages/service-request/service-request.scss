@@ -37,6 +37,7 @@ page-service-request {
         align-items: center;
         justify-content: center;
         margin-top: 24px;
+        position: relative;
     }
     
     .ns-submit__button {
@@ -50,5 +51,10 @@ page-service-request {
         border-bottom: 2px solid #56160b;
         font-size: 14px;
         cursor: pointer;
+    }
+    
+    .ns-submit .spinner-button {
+        top: 10px;
+        margin-left: -80px;
     }
 }

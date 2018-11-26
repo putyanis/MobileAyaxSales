@@ -42,6 +42,7 @@
         </form>
 
         <div class="submit-search">
+            <ion-spinner class="spinner-button" [ngClass]="{'spinner-button_show' : loading}"></ion-spinner>
             <span class="submit-search__button" (click)="saveUser();">Сохранить</span>
         </div>
     </div>

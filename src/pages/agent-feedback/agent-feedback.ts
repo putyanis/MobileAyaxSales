@@ -19,6 +19,8 @@ export class AgentFeedbackPage {
     private AR: AyaxRest;
     private readonly MSG: any;
 
+    public loading: boolean = false;
+
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
                 private element: ElementRef,
@@ -35,6 +37,7 @@ export class AgentFeedbackPage {
     }
 
     public sendMessage() {
+        this.loading = true;
         this.AR.post('AgentRequest', {
             agent: this.agentID,
             agentEmail: this.agentEmail,
@@ -43,6 +46,7 @@ export class AgentFeedbackPage {
             phone: this.form.userPhone.value,
             message: this.form.userMessage.value,
         }).then((res) => {
+            this.loading = false;
             if (res.data.status == 'fail')
                 this.MSG.showErrorMessage(
                     MessText.getMessage('REQUEST_ERROR_TITLE'),

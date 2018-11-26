@@ -1,26 +1,22 @@
 page-object-request {
-    .ns-form
-    {
+    .ns-form {
         margin: 0 16px;
     }
     
-    .ns-field
-    {
+    .ns-field {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         margin-bottom: 16px;
     }
     
-    .ns-title
-    {
+    .ns-title {
         width: 100%;
         font-weight: bold;
         margin-bottom: 16px;
     }
     
-    .ns-field__input
-    {
+    .ns-field__input {
         display: block;
         box-sizing: border-box;
         padding: 8px 9px 10px;
@@ -35,17 +31,16 @@ page-object-request {
         height: 130px;
     }
     
-    .ns-submit
-    {
+    .ns-submit {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         margin-top: 24px;
+        position: relative;
     }
     
-    .ns-submit__button
-    {
+    .ns-submit__button {
         color: #fff;
         text-align: center;
         padding: 10px 36px;
@@ -56,5 +51,10 @@ page-object-request {
         border-bottom: 2px solid #56160b;
         font-size: 14px;
         cursor: pointer;
+    }
+    
+    .ns-submit .spinner-button {
+        top: 10px;
+        margin-left: -80px;
     }
 }

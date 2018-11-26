@@ -1,14 +1,12 @@
 page-new-b {
-    .checkbox
-    {
+    .checkbox {
         position: relative;
         color: #fff;
         font-size: 13px;
         line-height: 18px;
     }
     
-    .checkbox input
-    {
+    .checkbox input {
         position: absolute;
         opacity: 0;
         top: 0;
@@ -17,16 +15,14 @@ page-new-b {
         height: 0;
     }
     
-    .checkbox label
-    {
+    .checkbox label {
         position: relative;
         padding-left: 24px;
         display: block;
         cursor: pointer;
     }
     
-    .checkbox label:after
-    {
+    .checkbox label:after {
         content: '';
         display: block;
         background: url("../../assets/imgs/checkbox.png");
@@ -37,8 +33,7 @@ page-new-b {
         left: 0;
     }
     
-    .checkbox input:checked + label:after
-    {
+    .checkbox input:checked + label:after {
         background-position: -16px 0;
     }
     
@@ -91,6 +86,7 @@ page-new-b {
         align-items: center;
         justify-content: center;
         margin-top: 24px;
+        position: relative;
     }
     
     .ns-submit__button {
@@ -104,5 +100,10 @@ page-new-b {
         border-bottom: 2px solid #56160b;
         font-size: 14px;
         cursor: pointer;
+    }
+    
+    .ns-submit .spinner-button {
+        top: 10px;
+        margin-left: -80px;
     }
 }

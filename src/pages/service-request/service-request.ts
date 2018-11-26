@@ -18,6 +18,8 @@ export class ServiceRequestPage {
     private readonly MSG: any;
     private AR: AyaxRest;
 
+    public loading: boolean = false;
+
     constructor(public navCtrl: NavController, public navParams: NavParams, public element: ElementRef, public alertCtrl: AlertController) {
         this.serviceName = navParams.get('serviceName');
         this.serviceType = navParams.get('serviceType');
@@ -31,6 +33,7 @@ export class ServiceRequestPage {
     }
 
     sendMessage() {
+        this.loading = true;
         this.AR.post('ServiceRequest', {
             serviceName: this.serviceName,
             serviceType: this.serviceType,
@@ -39,6 +42,8 @@ export class ServiceRequestPage {
             phone: this.form.userPhone.value,
             message: this.form.userMessage.value,
         }).then((res) => {
+            this.loading = false;
+
             if (res.data.status == 'fail')
                 this.MSG.showErrorMessage(
                     MessText.getMessage('REQUEST_ERROR_TITLE'),
