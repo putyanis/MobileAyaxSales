@@ -33,7 +33,11 @@ export class SearchPage {
     }
 
     ionViewDidLoad() {
-        this.AR.get('DicSellDistrict').then((res) => {
+        this.AR.get('DicSellDistrict', {
+            filter: {
+                includeObjects: true
+            }
+        }).then((res) => {
             this.districts = res.data.rows;
         });
     }
