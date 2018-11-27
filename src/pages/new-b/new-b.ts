@@ -114,6 +114,6 @@ export class NewBPage {
     }
 
     public checkIt(node) {
-        node.previousEспсlementSibling.checked = !node.previousElementSibling.checked;
+        node.previousElementSibling.checked = !node.previousElementSibling.checked;
     }
 }
